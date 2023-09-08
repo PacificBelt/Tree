@@ -1,5 +1,4 @@
-<main>
-                        <h1 id="補足laravel-sail-を使ったチーム開発の始め方"><a class="header" href="#補足laravel-sail-を使ったチーム開発の始め方">【補足】Laravel Sail を使ったチーム開発の始め方</a></h1>
+<h1 id="laravel-sail-を使ったチーム開発の始め方"><a class="header" href="#補足laravel-sail-を使ったチーム開発の始め方">【補足】Laravel Sail を使ったチーム開発の始め方</a></h1>
 <p>Laravel Sail」を使用してチーム開発を行う場合，下記の手順となる．</p>
 <ul>
 <li>
@@ -91,5 +90,3 @@ DB_PASSWORD=プロジェクト作成者のパスワードに合わせる
 <p>コンテナ終了させるときは下記コマンドを実行する．</p>
 <pre><div class="buttons"><button class="fa fa-copy clip-button" title="Copy to clipboard" aria-label="Copy to clipboard"><i class="tooltiptext"></i></button></div><code class="language-bash hljs">./vendor/bin/sail down
 </code></pre>
-
-                    </main>
