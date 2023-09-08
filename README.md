@@ -1,5 +1,5 @@
-<h1 id="laravel-sail-を使ったチーム開発の始め方"><a class="header" href="#補足laravel-sail-を使ったチーム開発の始め方">【補足】Laravel Sail を使ったチーム開発の始め方</a></h1>
-<p>Laravel Sail」を使用してチーム開発を行う場合，下記の手順となる．</p>
+<h1 id="laravel-sail-を使ったチーム開発の始め方"><a class="header" href="#laravel-sail-を使ったチーム開発の始め方">Laravel Sail を使ったチーム開発の始め方</a></h1>
+<p>Laravel Sailを使用してチーム開発を行う場合，下記の手順となる．</p>
 <ul>
 <li>
 <p>一人の開発者がプロジェクトを作成し，GitHub にソースコードを push する．</p>
