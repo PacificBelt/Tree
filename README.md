@@ -84,6 +84,9 @@ DB_PASSWORD=プロジェクト作成者のパスワードに合わせる
 <p>立ち上がったら下記コマンドを順に実行し，アプリケーションの準備を整える．</p>
 <pre><div class="buttons"><button class="fa fa-copy clip-button" title="Copy to clipboard" aria-label="Copy to clipboard"><i class="tooltiptext"></i></button></div><code class="language-bash hljs">./vendor/bin/sail php artisan key:generate
 ./vendor/bin/sail php artisan migrate
+./vendor/bin/sail npm install
+./vendor/bin/sail npm run dev
+./vendor/bin/sail php artisan db:seed
 </code></pre>
 <p>ブラウザから <code class="hljs">localhost</code> にアクセスするとアプリケーションの動作が確認できる．</p>
 <p>また，<code class="hljs">localhost:8080</code> にアクセスすると phpmyadmin にアクセスできる．</p>
