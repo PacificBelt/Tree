@@ -5,12 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class projects extends Model
+class payments extends Model
 {
     use HasFactory;
-
-    public function projectPayments()
-    {
-        return $this->hasMany(Payment::class);
-    }
 }
