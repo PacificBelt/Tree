@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('min_amount');
             $table->integer('goal_amount');
             $table->datetime('deadline');
-            $table->string('description');
+            $table->text('description');
             $table->string('header');
             $table->timestamps();
         });
