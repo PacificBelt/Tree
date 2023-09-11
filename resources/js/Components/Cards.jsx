@@ -17,7 +17,11 @@ export default function Cards(props) {
     const { items } = props;
     return (
         <>
-            <Box sx={{ display: "flex", alignItems: "flex-end" }} px={4} gap={1}>
+            <Box
+                sx={{ display: "flex", alignItems: "flex-end" }}
+                px={4}
+                gap={1}
+            >
                 <SearchIcon />
                 <TextField
                     label="検索"
@@ -90,7 +94,13 @@ export default function Cards(props) {
                                         </Typography>
                                     </Box>
                                 </Box>
-                                <Typography>{item.content}</Typography>
+                                <Typography>
+                                    <div
+                                        dangerouslySetInnerHTML={{
+                                            __html: item.content,
+                                        }}
+                                    ></div>
+                                </Typography>
                             </CardContent>
                         </Card>
                     </Grid>
