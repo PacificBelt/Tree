@@ -7,10 +7,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    public function userProjects()
+    {
+        return $this->hasMany(Project::class);
+    }
+
+    public function userPayments()
+    {
+        return $this->hasMany(Payment::class);
+    }
 
     /**
      * The attributes that are mass assignable.
