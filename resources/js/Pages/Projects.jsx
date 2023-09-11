@@ -1,17 +1,21 @@
+import React from "react";
 import Cards from "@/Components/Cards";
 import Footer from "@/Components/Footer";
 import Header from "@/Components/Header";
 
-export default function Projects() {
-    const items = Array(50).fill({
-        title: "ほげほげ",
+export default function Projects(props) {
+    const { projects } = props;
+
+    const items = projects.map((project) => ({
+        title: project.title,
         content:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos aliquam ducimus consectetur mollitia atque in consequuntur soluta hic, deserunt ut dolor culpa. Voluptates, a dolore aut esse ea dicta ab!",
-        createdBy: "ほげ 太郎",
-        currentAmount: 10000,
-        goalAmount: 100000,
-        numDonations: 54,
-    });
+            project.description.replace(/\n/g, "<br />").slice(0, 100) + "...",
+        createdBy: project.userName, // ここは後で置き換え
+        currentAmount: project.currentAmount, // ここは後で現在の金額に置き換え
+        goalAmount: project.goal_amount,
+        numDonations: project.numDonations, // ここは後で実際の寄付数に置き換え
+    }));
+
     return (
         <>
             <Header />
