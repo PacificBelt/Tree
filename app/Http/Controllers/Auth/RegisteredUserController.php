@@ -31,19 +31,25 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+        $rules = [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'icon' => 'image',
-            'account_name' => 'string|max:255'
-        ]);
+            'account_name' => 'required|string|max:255'
+        ];
+
+        if ($request->has('icon')) {
+            // 'icon' フィールドが存在する場合、'image' バリデーションルールを適用
+            $rules['icon'] = 'image';
+        }
+
+        $request->validate($rules);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'icon' => $request->icon,
+            'icon' => $request->file('icon'), // 'icon' フィールドが存在しない場合は null
             'account_name' => $request->account_name
         ]);
 
