@@ -9,7 +9,7 @@ const Input = styled('input')({
     display: 'none',
 });
 
-const StandUpProject = () => {
+const EditProject = () => {
     return (
         <Paper
             sx={{
@@ -20,29 +20,29 @@ const StandUpProject = () => {
         >
             <Box mt={2}>
                 <Button>
-                    戻る
+                    作成したプロジェクト一覧に戻る
                 </Button>
             </Box>
-            <Typography variant={"h5"}>クラウドファンディングを開始する</Typography>
+            <Typography variant={"h5"}>プロジェクトを編集する</Typography>
             <Box mt={2}>
                 <Typography mb={1}>タイトル</Typography>
                 <TextField
-                    label="オリジナルタイトルを設定しましょう"
-                    variant="outlined"
-                    fullWidth
                     required
+                    label="オリジナルタイトルを設定しましょう"
+                    defaultValue="From Database"
+                    fullWidth
                     sx={{ mt: 1 }}
                 />
             </Box>
             <Box mt={4}>
                 <Typography mb={1}>プロジェクト詳細</Typography>
                 <TextField
+                    required
                     label="〇字程度でまとめましょう"
-                    variant="outlined"
+                    defaultValue="From Database"
                     fullWidth
                     multiline
                     rows={10}
-                    required
                     sx={{ mt: 1 }}
                 />
             </Box>
@@ -63,11 +63,13 @@ const StandUpProject = () => {
             <Box mt={4}>
                 <Typography mb={1}>目標金額</Typography>
                 <TextField
-                    label="(例)100,000"
-                    variant="outlined"
-                    required
+                    disabled
+                    label="変更不可"
+                    defaultValue="From database"
+                    variant="filled"
                     sx={{ mt: 1 }}
                     InputProps={{
+                        readOnly: true,
                         endAdornment:(
                             <InputAdornment position="end">
                                 円
@@ -80,7 +82,7 @@ const StandUpProject = () => {
                 <Typography mb={1}>最低支援額</Typography>
                 <TextField
                     label="(例)500"
-                    variant="outlined"
+                    defaultValue="From Database"
                     required
                     sx={{ mt: 1 }}
                     InputProps={{
@@ -95,7 +97,11 @@ const StandUpProject = () => {
             <Box mt={4}>
                 <Typography mb={1}>募集終了日</Typography>
                 <LocalizationProvider required dateAdapter={AdapterDayjs}>
-                    <DatePicker />
+                    <DatePicker
+                        disabled
+                        label="変更不可"
+                        defaultValue="From database"
+                    />
                 </LocalizationProvider>
             </Box>
             <Box mt={4}>
@@ -113,11 +119,11 @@ const StandUpProject = () => {
                     color="success"
                     fullWidth
                 >
-                    投稿する
+                    保存する
                 </Button>
             </Box>
         </Paper>
     );
 };
 
-export default StandUpProject;
+export default EditProject;
