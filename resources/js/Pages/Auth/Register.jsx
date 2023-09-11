@@ -1,15 +1,17 @@
+import { Box, Button, Link, Paper, TextField, Typography } from "@mui/material";
 import { useEffect } from 'react';
-import GuestLayout from '@/Layouts/GuestLayout';
+// import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
-import { Head, Link, useForm } from '@inertiajs/react';
+// import PrimaryButton from '@/Components/PrimaryButton';
+// import TextInput from '@/Components/TextInput';
+import { Head, useForm } from '@inertiajs/react';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
+        account_name: '',
         password: '',
         password_confirmation: '',
     });
@@ -27,91 +29,103 @@ export default function Register() {
     };
 
     return (
-        <GuestLayout>
-            <Head title="Register" />
-
+        <Paper
+            sx={{
+                p: 4,
+                width: "500px",
+                m: "30px auto",
+            }}
+        >
+            <Typography variant={"h5"}>新規登録</Typography>
             <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="name" value="Name" />
-
-                    <TextInput
-                        id="name"
-                        name="name"
+                <Box mt={2}>
+                    <InputLabel htmlFor="name" />
+                    <TextField
+                        label="本名"
+                        fullWidth
+                        required
                         value={data.name}
-                        className="mt-1 block w-full"
                         autoComplete="name"
-                        isFocused={true}
-                        onChange={(e) => setData('name', e.target.value)}
-                        required
+                        onChange={(e) => setData('name', e.target.value)}      
+                        variant="standard"
+                        sx={{ mt: 1 }}
                     />
-
                     <InputError message={errors.name} className="mt-2" />
-                </div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email" />
-
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
+                    <InputLabel htmlFor="email" />
+                    <TextField
+                        label="メールアドレス"
+                        variant="standard"
+                        fullWidth
                         value={data.email}
-                        className="mt-1 block w-full"
                         autoComplete="username"
-                        onChange={(e) => setData('email', e.target.value)}
+                        onChange={(e) => setData('email', e.target.value)}                
                         required
+                        sx={{ mt: 1 }}
                     />
-
                     <InputError message={errors.email} className="mt-2" />
-                </div>
+                </Box>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                <Box mt={2}>
+                    <InputLabel htmlFor="account_name" />
+                    <TextField
+                        label="表示名"
+                        variant="standard"
+                        fullWidth
+                        value={data.account_name}
+                        autoComplete="name"
+                        onChange={(e) => setData('account_name', e.target.value)}
+                        required
+                        sx={{ mt: 1 }}
+                    />
+                    <InputError message={errors.account_name} className="mt-2" />
 
-                    <TextInput
-                        id="password"
+                    <InputLabel htmlFor="password"/>
+                    <TextField
                         type="password"
-                        name="password"
+                        label="パスワード"
                         value={data.password}
-                        className="mt-1 block w-full"
+                        variant="standard"
+                        fullWidth
                         autoComplete="new-password"
                         onChange={(e) => setData('password', e.target.value)}
                         required
+                        sx={{ mt: 1 }}
                     />
-
                     <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
-
-                    <TextInput
-                        id="password_confirmation"
+                    
+                    <InputLabel htmlFor="password_confirmation" />
+                    <TextField
                         type="password"
-                        name="password_confirmation"
+                        label="パスワード(確認)"
                         value={data.password_confirmation}
-                        className="mt-1 block w-full"
+                        variant="standard"
+                        fullWidth
                         autoComplete="new-password"
                         onChange={(e) => setData('password_confirmation', e.target.value)}
                         required
+                        sx={{ mt: 1 }}
                     />
-
                     <InputError message={errors.password_confirmation} className="mt-2" />
-                </div>
+                </Box>
 
-                <div className="flex items-center justify-end mt-4">
-                    <Link
-                        href={route('login')}
-                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                        Already registered?
-                    </Link>
-
-                    <PrimaryButton className="ml-4" disabled={processing}>
-                        Register
-                    </PrimaryButton>
-                </div>
+                <Button
+                    type="submit"
+                    color="primary"
+                    variant="contained"
+                    fullWidth
+                    sx={{ mt: 4 }}
+                    disabled={processing}
+                >
+                    登録
+                </Button>
+                <Box sx={{ mt: 1 }}>
+                    <Typography variant="caption">
+                        すでにアカウントをお持ちの方は
+                        <Link href="login">ログイン</Link>
+                    </Typography>
+                </Box>
             </form>
-        </GuestLayout>
+        </Paper>
     );
 }
