@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Paper, Select, TextField, Typography, MenuItem, FormControl, InputLabel } from "@mui/material";
+import { Box, Button, Paper, Select, TextField, Typography, MenuItem, FormControl, InputLabel, InputAdornment } from "@mui/material";
 import { styled } from "@mui/material/styles"
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
@@ -32,11 +32,11 @@ const StandUpProject = () => {
             <Box mt={4}>
                 <Typography mb={1}>プロジェクト詳細</Typography>
                 <TextField
-                    label="〇行程度でまとめましょう"
+                    label="〇字程度でまとめましょう"
                     variant="outlined"
                     fullWidth
                     multiline
-                    rows={5}
+                    rows={10}
                     required
                     sx={{ mt: 1 }}
                 />
@@ -62,11 +62,34 @@ const StandUpProject = () => {
                     variant="outlined"
                     required
                     sx={{ mt: 1 }}
+                    InputProps={{
+                        endAdornment:(
+                            <InputAdornment position="end">
+                                円
+                            </InputAdornment>
+                        )
+                    }}
+                />
+            </Box>
+            <Box mt={4}>
+                <Typography mb={1}>最低支援額</Typography>
+                <TextField
+                    label="(例)500"
+                    variant="outlined"
+                    required
+                    sx={{ mt: 1 }}
+                    InputProps={{
+                        endAdornment:(
+                            <InputAdornment position="end">
+                                円
+                            </InputAdornment>
+                        )
+                    }}
                 />
             </Box>
             <Box mt={4}>
                 <Typography mb={1}>募集終了日</Typography>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <LocalizationProvider required dateAdapter={AdapterDayjs}>
                     <DatePicker />
                 </LocalizationProvider>
             </Box>
