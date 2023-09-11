@@ -39,23 +39,32 @@ export default function Login({ status, canResetPassword }) {
         >
             <Typography variant={"h5"}>ログイン</Typography>
             <Box mt={2}>
+                <InputLabel htmlFor="email" />
                 <TextField
                     label="メールアドレス"
                     variant="standard"
                     fullWidth
+                    value={data.email}
+                    autoComplete="username"
                     required
                     sx={{ mt: 1 }}
                     onChange={(e) => setData('email', e.target.value)}
                 />
+                <InputError message={errors.email} className="mt-2" />
+
+                <InputLabel htmlFor="password" />
                 <TextField
                     type="password"
                     label="パスワード"
                     variant="standard"
                     fullWidth
+                    value={data.password}
+                    autoComplete="password"
                     required
                     sx={{ mt: 1 }}
                     onChange={(e) => setData('password', e.target.value)}
                 />
+                <InputError message={errors.password} className="mt-2" />
             </Box>
             <Link href="/dashboard">
                 <Button
