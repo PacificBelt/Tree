@@ -55,7 +55,7 @@ export default function MyPageMenu(props) {
                         <ListItemIcon>
                             <ManageAccountsIcon />
                         </ListItemIcon>
-                        <ListItemText primary={"会員情報編集"} />
+                        <ListItemText primary={"アカウント情報編集"} />
                     </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
