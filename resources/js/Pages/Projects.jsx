@@ -1,4 +1,5 @@
 import Cards from "@/Components/Cards";
+import Footer from "@/Components/Footer";
 import Header from "@/Components/Header";
 
 export default function Projects() {
@@ -15,6 +16,7 @@ export default function Projects() {
         <>
             <Header />
             <Cards items={items} />
+            <Footer />
         </>
     );
 }
