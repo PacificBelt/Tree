@@ -159,6 +159,54 @@ export default function EditProfile() {
                         保存
                     </Button>
                 </form>
+
+                <form onSubmit={submit}>
+                    <Box mt={6}>
+                        <Typography variant={"h6"}>その他情報</Typography>
+                        <InputLabel htmlFor="description" />
+                        <TextField
+                            label="紹介文"
+                            variant="standard"
+                            fullWidth
+                            value={data.description}
+                            autoComplete="name"
+                            onChange={(e) =>
+                                setData("description", e.target.value)
+                            }
+                            required
+                            multiline
+                            rows={4}
+                            sx={{ mt: 1 }}
+                        />
+                        <InputError
+                            message={errors.description}
+                            className="mt-2"
+                        />
+
+                        <InputLabel htmlFor="url" />
+                        <TextField
+                            label="ソーシャルメディア等のURL"
+                            variant="standard"
+                            fullWidth
+                            value={data.url}
+                            autoComplete="url"
+                            onChange={(e) => setData("url", e.target.value)}
+                            required
+                            sx={{ mt: 1 }}
+                        />
+                        <InputError message={errors.url} className="mt-2" />
+                    </Box>
+                    <Button
+                        type="submit"
+                        color="primary"
+                        variant="contained"
+                        fullWidth
+                        sx={{ mt: 4 }}
+                        disabled={processing}
+                    >
+                        保存
+                    </Button>
+                </form>
             </Paper>
         </>
     );
