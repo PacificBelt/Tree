@@ -32,7 +32,7 @@ export default function Register() {
     };
 
     return (
-        <>
+        <Box sx={{display:"flex",flexDirection:"column",minHeight:"100vh"}}>
             <Header auth={auth} />
             <Paper
                 sx={{
@@ -132,7 +132,8 @@ export default function Register() {
                     </Box>
                 </form>
             </Paper>
+            <Box sx={{flexGrow:1}}></Box>
             <Footer />
-        </>
+        </Box>
     );
 }
