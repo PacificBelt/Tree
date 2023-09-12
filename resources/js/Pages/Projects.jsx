@@ -4,7 +4,7 @@ import Footer from "@/Components/Footer";
 import Header from "@/Components/Header";
 
 export default function Projects(props) {
-    const { projects } = props;
+    const { projects, auth } = props;
 
     const items = projects.map((project) => ({
         title: project.title,
@@ -19,7 +19,7 @@ export default function Projects(props) {
 
     return (
         <>
-            <Header />
+            <Header loginAndRegister auth={auth}/>
             <Cards items={items} />
             <Footer />
         </>
