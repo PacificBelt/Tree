@@ -120,12 +120,19 @@ export default function ProjectDetail(props) {
                             </Typography>
                             <Typography variant={"h5"} mt={1}>
                                 締め切り{" "}
-                                {new Date(props.project.deadline).toLocaleDateString('jp-jp', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}
+                                {new Date(props.project.deadline).toLocaleDateString('jp-jp', { weekday: "long", year: "numeric", month: "short", day: "numeric" })}
                             </Typography>
                         </Box>
                     </Card>
+                    <Box align="center" mt={3}>
+                        {(props.auth.user.name == props.project.userName) ?
+                            <Button variant="contained" size="large" href={route("project.edit", { id: (props.project.id)})} > プロジェクトを編集する</Button>
+                            :
+                            <Button variant="contained" size="large" href={route("payment", { id: (props.project.id -1)})} > このプロジェクトを支援する</Button>
+                        }
+                    </Box>
                 </Grid>
-            </Grid>
-        </Paper>
+            </Grid >
+        </Paper >
     );
 }
