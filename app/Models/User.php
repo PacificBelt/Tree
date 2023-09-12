@@ -61,7 +61,8 @@ class User extends Authenticatable
     protected $attributes = [
         'icon' => null,
         'url' => null,
-        'point' => 0
+        'point' => 0,
+        'introduction' => null,
     ];
     /**
      * The attributes that should be cast.

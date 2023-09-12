@@ -1,8 +1,7 @@
+import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import { useRef } from 'react';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
 import { useForm } from '@inertiajs/react';
 import { Transition } from '@headlessui/react';
 
@@ -37,76 +36,88 @@ export default function UpdatePasswordForm({ className = '' }) {
     };
 
     return (
-        <section className={className}>
-            <header>
-                <h2 className="text-lg font-medium text-gray-900">Update Password</h2>
-
-                <p className="mt-1 text-sm text-gray-600">
-                    Ensure your account is using a long, random password to stay secure.
-                </p>
-            </header>
-
-            <form onSubmit={updatePassword} className="mt-6 space-y-6">
-                <div>
-                    <InputLabel htmlFor="current_password" value="Current Password" />
-
-                    <TextInput
-                        id="current_password"
-                        ref={currentPasswordInput}
+        <section>
+            <form onSubmit={updatePassword} >
+                <Box mt={6}>
+                    <Typography variant={"h6"}>パスワード</Typography>
+                    <InputLabel htmlFor="current_password" />
+                    <TextField
+                        type="password"
+                        label="現在のパスワード"
                         value={data.current_password}
-                        onChange={(e) => setData('current_password', e.target.value)}
-                        type="password"
-                        className="mt-1 block w-full"
+                        variant="standard"
+                        fullWidth
                         autoComplete="current-password"
+                        onChange={(e) =>
+                            setData("current_password", e.target.value)
+                        }
+                        required
+                        sx={{ mt: 1 }}
+                    />
+                    <InputError
+                        message={errors.current_password}
+                        className="mt-2"
                     />
 
-                    <InputError message={errors.current_password} className="mt-2" />
-                </div>
-
-                <div>
-                    <InputLabel htmlFor="password" value="New Password" />
-
-                    <TextInput
-                        id="password"
-                        ref={passwordInput}
+                    <InputLabel htmlFor="password" />
+                    <TextField
+                        type="password"
+                        label="新しいパスワード"
                         value={data.password}
-                        onChange={(e) => setData('password', e.target.value)}
-                        type="password"
-                        className="mt-1 block w-full"
+                        variant="standard"
+                        fullWidth
                         autoComplete="new-password"
+                        onChange={(e) =>
+                            setData("password", e.target.value)
+                        }
+                        required
+                        sx={{ mt: 1 }}
+                    />
+                    <InputError
+                        message={errors.new_password}
+                        className="mt-2"
                     />
 
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div>
-                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
-
-                    <TextInput
-                        id="password_confirmation"
+                    <InputLabel htmlFor="password_confirmation" />
+                    <TextField
+                        type="password"
+                        label="新しいパスワード (確認)"
                         value={data.password_confirmation}
-                        onChange={(e) => setData('password_confirmation', e.target.value)}
-                        type="password"
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
+                        variant="standard"
+                        fullWidth
+                        autoComplete="new-password-confirm"
+                        onChange={(e) =>
+                            setData("password_confirmation", e.target.value)
+                        }
+                        required
+                        sx={{ mt: 1 }}
                     />
+                    <InputError
+                        message={errors.new_password}
+                        className="mt-2"
+                    />
+                </Box>
 
-                    <InputError message={errors.password_confirmation} className="mt-2" />
-                </div>
+                <Button
+                    type="submit"
+                    color="primary"
+                    variant="contained"
+                    fullWidth
+                    sx={{ mt: 4 }}
+                    disabled={processing}
+                >
+                    保存
+                </Button>
 
-                <div className="flex items-center gap-4">
-                    <PrimaryButton disabled={processing}>Save</PrimaryButton>
-
-                    <Transition
-                        show={recentlySuccessful}
-                        enter="transition ease-in-out"
-                        enterFrom="opacity-0"
-                        leave="transition ease-in-out"
-                        leaveTo="opacity-0"
-                    >
-                        <p className="text-sm text-gray-600">Saved.</p>
-                    </Transition>
-                </div>
+                <Transition
+                    show={recentlySuccessful}
+                    enter="transition ease-in-out"
+                    enterFrom="opacity-0"
+                    leave="transition ease-in-out"
+                    leaveTo="opacity-0"
+                >
+                    <p className="text-sm text-gray-600">更新成功.</p>
+                </Transition>
             </form>
         </section>
     );

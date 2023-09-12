@@ -22,6 +22,9 @@ export default function MenuAppBar(props) {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Tree
                 </Typography>
+                <Button color="inherit" sx={{ mx: 1 }} href="/project/create">
+                    プロジェクト作成
+                </Button>
                 {auth.user ? (
                     <div>
                         <IconButton
