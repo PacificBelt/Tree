@@ -29,6 +29,7 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/project/show/{id}', [ProjectController::class, 'show'])->name('project.show');
 Route::get('/dashboard', [ProjectController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

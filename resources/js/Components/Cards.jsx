@@ -11,6 +11,7 @@ import {
     Grid,
     TextField,
     Typography,
+    Link,
 } from "@mui/material";
 
 export default function Cards(props) {
@@ -34,6 +35,9 @@ export default function Cards(props) {
                 {items.map((item) => (
                     <Grid item lg={3} md={4} sm={6} xs={12}>
                         <Card>
+                            <Link href={route("project.show", { id: item.id })}>
+                                リンク
+                            </Link>
                             <CardMedia>
                                 <svg
                                     viewBox="0 0 316 316"

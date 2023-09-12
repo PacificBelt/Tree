@@ -101,7 +101,24 @@ class ProjectController extends Controller
      */
     public function show(string $id)
     {
-        //
+        //時間がないので一旦使い回しで行きます
+        //時間があれば一つだけ取り出すように変更します
+        $projects = projects::getAllOrderByUpdated_at();
+        [$currentAmount, $numDonations] = payments::getCurrentAmount();
+        //projectから,project_idをキーとしたuser_idの連想配列を作成する
+        $userIds = [];
+        foreach ($projects as $key => $value) {
+            $userIds[$value->id] = $value->user_id;
+        }
+        $userName = User::getNames($userIds);
+        //projectsにcurrentAmountとnumDonationsとuserNameを追加する(project_idをキーとした連想配列)
+        foreach ($projects as $key => $value) {
+            $projects[$key]['currentAmount'] = $currentAmount[$value->id];
+            $projects[$key]['numDonations'] = $numDonations[$value->id];
+            $projects[$key]['userName'] = $userName[$value->user_id];
+        }
+        $project = $projects[$id];
+        return Inertia::render('ProjectDetail', ['project' => $project]);
     }
 
     /**
