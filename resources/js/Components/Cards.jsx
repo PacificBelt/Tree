@@ -1,4 +1,3 @@
-import SearchIcon from "@mui/icons-material/Search";
 import PersonIcon from "@mui/icons-material/Person";
 import CurrencyYenIcon from "@mui/icons-material/CurrencyYen";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -9,27 +8,20 @@ import {
     CardHeader,
     CardMedia,
     Grid,
-    TextField,
     Typography,
     Link,
 } from "@mui/material";
 
 export default function Cards(props) {
     const { items } = props;
+
     return (
         <>
             <Box
                 sx={{ display: "flex", alignItems: "flex-end" }}
                 px={4}
                 gap={1}
-            >
-                <SearchIcon />
-                <TextField
-                    label="検索"
-                    variant="standard"
-                    sx={{ border: "none" }}
-                />
-            </Box>
+            ></Box>
             <Grid container spacing={2} p={4}>
                 {/* TODO: key */}
                 {items.map((item) => (
