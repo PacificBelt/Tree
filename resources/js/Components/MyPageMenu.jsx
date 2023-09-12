@@ -50,8 +50,7 @@ export default function MyPageMenu(props) {
             <Divider />
             <List>
                 <ListItem disablePadding>
-                  {/* TODO: リンク先を設定する */}
-                    <ListItemButton>
+                    <ListItemButton href="profile">
                         <ListItemIcon>
                             <ManageAccountsIcon />
                         </ListItemIcon>
