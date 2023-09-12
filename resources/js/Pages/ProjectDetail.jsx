@@ -78,7 +78,7 @@ export default function ProjectDetail(props) {
                             </Typography>
                             <LinearProgress
                                 variant="determinate"
-                                value={60}
+                                value={props.project.currentAmount / props.project.goal_amount}
                                 sx={{
                                     height: "10px",
                                     borderRadius: "5px",
@@ -121,7 +121,6 @@ export default function ProjectDetail(props) {
                             <Typography variant={"h5"} mt={1}>
                                 締め切り{" "}
                                 {new Date(props.project.deadline).toLocaleDateString('jp-jp', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}
-                                {/* {props.project.deadline} */}
                             </Typography>
                         </Box>
                     </Card>
