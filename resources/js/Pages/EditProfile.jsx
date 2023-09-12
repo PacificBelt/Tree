@@ -42,34 +42,8 @@ export default function EditProfile() {
             >
                 <Typography variant={"h5"}>アカウント情報編集</Typography>
                 <form onSubmit={submit}>
-                    <Box mt={2}>
-                        <InputLabel htmlFor="name" />
-                        <TextField
-                            label="本名"
-                            fullWidth
-                            disabled
-                            value={data.name}
-                            autoComplete="name"
-                            variant="standard"
-                            sx={{ mt: 1 }}
-                        />
-                        <InputError message={errors.name} className="mt-2" />
-
-                        <InputLabel htmlFor="email" />
-                        <TextField
-                            label="メールアドレス"
-                            variant="standard"
-                            fullWidth
-                            value={data.email}
-                            autoComplete="username"
-                            onChange={(e) => setData("email", e.target.value)}
-                            required
-                            sx={{ mt: 1 }}
-                        />
-                        <InputError message={errors.email} className="mt-2" />
-                    </Box>
-
-                    <Box mt={2}>
+                    <Box mt={6}>
+                        <Typography variant={"h6"}>基本情報</Typography>
                         <InputLabel htmlFor="account_name" />
                         <TextField
                             label="表示名"
@@ -88,7 +62,54 @@ export default function EditProfile() {
                             className="mt-2"
                         />
 
-                        <InputLabel htmlFor="password" />
+                        <InputLabel htmlFor="email" />
+                        <TextField
+                            label="メールアドレス"
+                            variant="standard"
+                            fullWidth
+                            value={data.email}
+                            autoComplete="username"
+                            onChange={(e) => setData("email", e.target.value)}
+                            required
+                            sx={{ mt: 1 }}
+                        />
+                        <InputError message={errors.email} className="mt-2" />
+                    </Box>
+                    <Button
+                        type="submit"
+                        color="primary"
+                        variant="contained"
+                        fullWidth
+                        sx={{ mt: 4 }}
+                        disabled={processing}
+                    >
+                        保存
+                    </Button>
+                </form>
+
+                <form onSubmit={submit}>
+                    <Box mt={6}>
+                        <Typography variant={"h6"}>パスワード</Typography>
+                        <InputLabel htmlFor="current_password" />
+                        <TextField
+                            type="password"
+                            label="現在のパスワード"
+                            value={data.password}
+                            variant="standard"
+                            fullWidth
+                            autoComplete="current-password"
+                            onChange={(e) =>
+                                setData("current_password", e.target.value)
+                            }
+                            required
+                            sx={{ mt: 1 }}
+                        />
+                        <InputError
+                            message={errors.current_password}
+                            className="mt-2"
+                        />
+
+                        <InputLabel htmlFor="new_password" />
                         <TextField
                             type="password"
                             label="新しいパスワード"
@@ -97,13 +118,32 @@ export default function EditProfile() {
                             fullWidth
                             autoComplete="new-password"
                             onChange={(e) =>
-                                setData("password", e.target.value)
+                                setData("new_password", e.target.value)
                             }
                             required
                             sx={{ mt: 1 }}
                         />
                         <InputError
-                            message={errors.password}
+                            message={errors.new_password}
+                            className="mt-2"
+                        />
+
+                        <InputLabel htmlFor="new_password_confirm" />
+                        <TextField
+                            type="password"
+                            label="新しいパスワード (確認)"
+                            value={data.password}
+                            variant="standard"
+                            fullWidth
+                            autoComplete="new-password-confirm"
+                            onChange={(e) =>
+                                setData("new_password_confirm", e.target.value)
+                            }
+                            required
+                            sx={{ mt: 1 }}
+                        />
+                        <InputError
+                            message={errors.new_password}
                             className="mt-2"
                         />
                     </Box>
@@ -116,11 +156,10 @@ export default function EditProfile() {
                         sx={{ mt: 4 }}
                         disabled={processing}
                     >
-                        変更
+                        保存
                     </Button>
                 </form>
             </Paper>
-            <Footer />
         </>
     );
 }
