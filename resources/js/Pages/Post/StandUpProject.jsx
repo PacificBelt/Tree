@@ -5,30 +5,38 @@ import { styled } from "@mui/material/styles"
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { useForm } from '@inertiajs/react';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
+
+import Header from "@/Components/Header";
+import Footer from "@/Components/Footer";
+import { useForm, usePage } from '@inertiajs/react';
+
+import ScrollToTop from "@/Components/ScrollToTop";
 
 const Input = styled('input')({
     display: 'none',
 });
 
 const StandUpProject = () => {
-        const { data, setData, post, processing, errors, reset } = useForm({
-            title: '',
-            min_amount: '',
-            goal_amount: '',
-            deadline: '',
-            description: '',
-            header: '',
-        });
+    const auth = usePage().props.auth;
+    const { data, setData, post, processing, errors, reset } = useForm({
+        title: '',
+        min_amount: '',
+        goal_amount: '',
+        deadline: '',
+        description: '',
+        header: '',
+    });
     
-        const submit = (e) => {
-            e.preventDefault();
+    const submit = (e) => {
+        e.preventDefault();
     
-            post(route('project.create'));
-        };
+        post(route('project.create'));
+    };
     return (
+        <>
+        <Header auth={auth}/>
         <Paper
             sx={{
                 p: 4,
@@ -152,6 +160,9 @@ const StandUpProject = () => {
                 </Box>
             </form>
         </Paper>
+        <Footer />
+        <ScrollToTop />
+        </>
     );
 };
 

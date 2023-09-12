@@ -5,13 +5,19 @@ import { styled } from "@mui/material/styles"
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { useForm } from '@inertiajs/react';
+
+import Header from "@/Components/Header";
+import Footer from "@/Components/Footer";
+import { useForm, usePage } from '@inertiajs/react';
+
+import ScrollToTop from "@/Components/ScrollToTop";
 
 const Input = styled('input')({
     display: 'none',
 });
 
 const EditProject = (props) => {
+    const auth = usePage().props.auth;
     const { project } = props;
 
     const {data, setData, post, processing} = useForm({
@@ -29,6 +35,8 @@ const EditProject = (props) => {
     };
 
     return (
+        <>
+        <Header auth={auth}/>
         <Paper
             sx={{
                 p: 4,
@@ -143,6 +151,9 @@ const EditProject = (props) => {
                 </Box>
             </form>
         </Paper>
+        <Footer />
+        <ScrollToTop />
+        </>
     );
 };
 
