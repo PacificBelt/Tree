@@ -55,7 +55,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //project/createというフロントの画面に遷移
+        //プロジェクトの作成画面に遷移
         return Inertia::render('Post/StandUpProject');
     }
 
@@ -109,7 +109,9 @@ class ProjectController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $project = projects::find($id);
+         //プロジェクトの編集画面に遷移
+         return Inertia::render('Post/EditProject', ['project' => $project]);
     }
 
     /**
@@ -117,7 +119,36 @@ class ProjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //プロジェクトのバリデーション
+        //現在は画像以外必須項目
+        $request->validate([
+            'title' => 'string|max:255',
+            'min_amount' => 'integer|min:0',//正の整数
+            'description' => 'string|max:500',
+            'header' => 'nullable|image'//写真
+        ]);
+
+        $project = projects::find($id);
+       
+        if ($request->title !== null) {
+            $project->title = $request->title;
+        }
+
+        if ($request->min_mount !== null) {
+            $project->min_mount = $request->min_mount;
+        }
+
+        if($request->description != null){
+            $project->description = $request->description;
+        }
+
+        if ($request->header !== null) {
+            $project->header = $request->header;
+        }
+
+        $project->save();
+
+        return redirect(RouteServiceProvider::HOME);
     }
 
     /**

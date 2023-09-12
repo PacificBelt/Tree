@@ -46,6 +46,9 @@ Route::get('/project/create', [ProjectController::class, 'create'])
 ->middleware(['auth', 'verified'])->name('project.create');
 Route::post('/project/create', [ProjectController::class, 'store']);
 
+Route::get('/project/edit/{id}', [ProjectController::class, 'edit'])->name('project.edit');
+Route::post('/project/edit/{id}', [ProjectController::class, 'update']);
+
 
 require __DIR__.'/auth.php';
 
