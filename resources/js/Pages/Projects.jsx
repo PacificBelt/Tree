@@ -2,6 +2,7 @@ import React from "react";
 import Cards from "@/Components/Cards";
 import Footer from "@/Components/Footer";
 import Header from "@/Components/Header";
+import ScrollToTop from "@/Components/ScrollToTop";
 
 export default function Projects(props) {
     const { projects, auth } = props;
@@ -22,6 +23,7 @@ export default function Projects(props) {
             <Header loginAndRegister auth={auth}/>
             <Cards items={items} />
             <Footer />
+            <ScrollToTop />
         </>
     );
 }
