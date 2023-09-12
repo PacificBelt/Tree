@@ -124,8 +124,7 @@ class ProjectController extends Controller
             }
         }
         
-        $project = projects::find($id);
-        return Inertia::render('ProjectDetail', ['project' => $project]);
+        return Inertia::render('ProjectDetail', ['project' => $projects[$id]]);
     }
 
     /**
