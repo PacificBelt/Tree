@@ -125,24 +125,14 @@ export default function ProjectDetail(props) {
                         </Box>
                     </Card>
                     <Box align="center" mt={3}>
-                        <Link href="/login">
-
-                            リンク
-                        </Link>
-                        {/* {(props.auth.user.name == props.project.userName) ?
-                            <Link href={route("project.show", { id: item.id })}>
-                                <Button variant="contained" size="large">プロジェクトを編集する</Button>
-                                リンク
-                            </Link> 
+                        {(props.auth.user.name == props.project.userName) ?
+                            <Button variant="contained" size="large" href={route("project.show", { id: (props.project.id -1)})} > プロジェクトを編集する</Button>
                             :
-                            <Link href={route("project.show", { id: item.id })}>
-                                <Button variant="contained" size="large">このプロジェクトを支援する</Button>
-                                リンク
-                            </Link>
-                        } */}
+                            <Button variant="contained" size="large" href={route("project.show", { id: (props.project.id -1)})} > このプロジェクトを支援する</Button>
+                        }
                     </Box>
                 </Grid>
-            </Grid>
-        </Paper>
+            </Grid >
+        </Paper >
     );
 }
