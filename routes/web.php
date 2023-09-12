@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,6 +30,8 @@ Route::get('/', function () {
     ]);
 });
 
+Route::post('/project/search', [SearchController::class, 'index'])->name('project.search');
+
 Route::get('/project/show/{id}', [ProjectController::class, 'show'])->name('project.show');
 Route::get('/dashboard', [ProjectController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -44,9 +47,8 @@ Route::get('/project', function () {
 })->middleware(['auth', 'verified'])->name('projects');
 
 Route::get('/project/create', [ProjectController::class, 'create'])
-->middleware(['auth', 'verified'])->name('project.create');
+    ->middleware(['auth', 'verified'])->name('project.create');
 Route::post('/project/create', [ProjectController::class, 'store']);
 
 
-require __DIR__.'/auth.php';
-
+require __DIR__ . '/auth.php';
