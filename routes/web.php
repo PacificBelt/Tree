@@ -37,4 +37,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__ . '/auth.php';
+
+Route::get('/project', function () {
+    return Inertia::render('Projects');
+})->middleware(['auth', 'verified'])->name('projects');
+
+Route::get('/project/create', [ProjectController::class, 'create'])
+->middleware(['auth', 'verified'])->name('project.create');
+Route::post('/project/create', [ProjectController::class, 'store']);
+
+
+require __DIR__.'/auth.php';
+
