@@ -83,6 +83,7 @@ export default function Settlement(props) {
                     fullWidth
                     sx={{ mt: 4 }}
                     disabled={processing}
+                    href={route("project.show", { id: (props.project.id -1)})}
                 >
                     支援する
                 </Button>
