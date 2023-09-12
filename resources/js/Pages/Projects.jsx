@@ -14,6 +14,7 @@ export default function Projects(props) {
         currentAmount: project.currentAmount, // ここは後で現在の金額に置き換え
         goalAmount: project.goal_amount,
         numDonations: project.numDonations, // ここは後で実際の寄付数に置き換え
+        id: project.id,
     }));
 
     return (
