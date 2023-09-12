@@ -13,12 +13,13 @@ export default function Projects(props) {
     const items = projects.map((project) => ({
         title: project.title,
         content:
-            project.description.replace(/\n/g, "<br />").slice(0, 100) + "...",
+            project.description.replace(/\n/g, "<br />").slice(0, 80) + "...",
         createdBy: project.userName,
         currentAmount: project.currentAmount,
         goalAmount: project.goal_amount,
         numDonations: project.numDonations,
         id: project.id,
+        deadline: project.deadline,
     }));
 
     const submit = (e) => {
