@@ -21,7 +21,7 @@ use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 Route::resource('project', ProjectController::class);
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
+    return Inertia::render('Projects', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,

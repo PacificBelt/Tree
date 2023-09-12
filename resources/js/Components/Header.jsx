@@ -5,9 +5,12 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MyPageMenu from "./MyPageMenu";
+import { Box, Button } from "@mui/material";
 
-export default function MenuAppBar() {
-    const [auth, setAuth] = useState(true);
+export default function MenuAppBar(props) {
+    const { loginAndRegister } = props;
+
+    const [auth, setAuth] = useState(true); // TODO:ログイン状態に応じて変える
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
     const toggleDrawer = () => {
@@ -20,7 +23,7 @@ export default function MenuAppBar() {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Tree
                 </Typography>
-                {auth && (
+                {auth ? (
                     <div>
                         <IconButton
                             size="large"
@@ -32,8 +35,30 @@ export default function MenuAppBar() {
                         >
                             <AccountCircle />
                         </IconButton>
-                        <MyPageMenu isOpen={isDrawerOpen} toggleDrawer={toggleDrawer}/>
+                        <MyPageMenu
+                            isOpen={isDrawerOpen}
+                            toggleDrawer={toggleDrawer}
+                        />
                     </div>
+                ) : (
+                    loginAndRegister && (
+                        <Box sx={{ display: "flex" }}>
+                            <Button
+                                color="inherit"
+                                sx={{ mx: 1 }}
+                                href={route("login")}
+                            >
+                                ログイン
+                            </Button>
+                            <Button
+                                color="inherit"
+                                sx={{ mx: 1 }}
+                                href={route("register")}
+                            >
+                                新規登録
+                            </Button>
+                        </Box>
+                    )
                 )}
             </Toolbar>
         </AppBar>
