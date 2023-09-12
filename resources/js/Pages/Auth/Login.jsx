@@ -27,13 +27,13 @@ export default function Login({ status, canResetPassword }) {
     };
 
     return (
-        <>
+        <Box sx={{display:"flex",flexDirection:"column",minHeight:"100vh"}}>
             <Header auth={auth}/>
             <Paper
                 sx={{
                     p: 4,
                     width: "500px",
-                    m: "30px auto",
+                    m: "auto"
                 }}
             >
                 <Typography variant={"h5"}>ログイン</Typography>
@@ -92,7 +92,8 @@ export default function Login({ status, canResetPassword }) {
                     </Typography>
                 </Box>
             </Paper>
+            <Box sx={{flexGrow:1}}></Box>
             <Footer />
-        </>
+        </Box>
     );
 }
