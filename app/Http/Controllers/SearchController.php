@@ -7,6 +7,7 @@ use App\Models\projects;
 use App\Models\payments;
 use App\Models\User;
 use Inertia\Inertia;
+use Auth;
 
 class SearchController extends Controller
 {
@@ -92,5 +93,67 @@ class SearchController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function created()
+    {
+
+        $user_id = Auth::user()->id;
+        $projects = projects::query()
+            ->where('user_id', $user_id)
+            ->get();
+        [$currentAmount, $numDonations] = payments::getCurrentAmount();
+        //projectから,project_idをキーとしたuser_idの連想配列を作成する
+        $userIds = [];
+        foreach ($projects as $key => $value) {
+            $userIds[$value->id] = $value->user_id;
+        }
+        $userName = User::getNames($userIds);
+        //projectsにcurrentAmountとnumDonationsとuserNameを追加する(project_idをキーとした連想配列)
+        foreach ($projects as $key => $value) {
+            $projects[$key]['userName'] = $userName[$value->user_id];
+
+            // プロジェクトが 支払いデータを持っていなければ0を返す
+            if (isset($currentAmount[$value->id])) {
+                $projects[$key]['currentAmount'] = $currentAmount[$value->id];
+                $projects[$key]['numDonations'] = $numDonations[$value->id];
+            } else {
+                $projects[$key]['currentAmount'] = 0;
+                $projects[$key]['numDonations'] = 0;
+            }
+        }
+        return Inertia::render('CreatedProjects', ['projects' => $projects]);
+    }
+
+    public function donated()
+    {
+        $user_id = Auth::user()->user_id;
+        $project_ids = payments::query()
+            ->where('user_id', $user_id)
+            ->pluck('project_id')
+            ->all();
+        $projects = projects::query()
+            ->whereIn('id', $project_ids)
+            ->get();
+        [$currentAmount, $numDonations] = payments::getCurrentAmount();
+        //projectから,project_idをキーとしたuser_idの連想配列を作成する
+        $userIds = [];
+        foreach ($projects as $key => $value) {
+            $userIds[$value->id] = $value->user_id;
+        }
+        $userName = User::getNames($userIds);
+        //projectsにcurrentAmountとnumDonationsとuserNameを追加する(project_idをキーとした連想配列)
+        foreach ($projects as $key => $value) {
+            $projects[$key]['userName'] = $userName[$value->user_id];
+
+            // プロジェクトが 支払いデータを持っていなければ0を返す
+            if (isset($currentAmount[$value->id])) {
+                $projects[$key]['currentAmount'] = $currentAmount[$value->id];
+                $projects[$key]['numDonations'] = $numDonations[$value->id];
+            } else {
+                $projects[$key]['currentAmount'] = 0;
+                $projects[$key]['numDonations'] = 0;
+            }
+        }
+        return Inertia::render('DonatedProjects', ['projects' => $projects]);
     }
 }

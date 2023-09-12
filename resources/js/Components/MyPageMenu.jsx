@@ -31,7 +31,7 @@ export default function MyPageMenu(props) {
             <List>
                 <ListItem disablePadding>
                     {/* TODO: リンク先を設定する */}
-                    <ListItemButton href="">
+                    <ListItemButton href={route("project.created")}>
                         <ListItemIcon>
                             <EditNoteIcon />
                         </ListItemIcon>
@@ -40,7 +40,7 @@ export default function MyPageMenu(props) {
                 </ListItem>
                 <ListItem disablePadding>
                     {/* TODO: リンク先を設定する */}
-                    <ListItemButton href="">
+                    <ListItemButton href={route("project.donated")}>
                         <ListItemIcon>
                             <FavoriteIcon />
                         </ListItemIcon>
@@ -50,6 +50,14 @@ export default function MyPageMenu(props) {
             </List>
             <Divider />
             <List>
+                <ListItem disablePadding>
+                    <ListItemButton href="profile">
+                        <ListItemIcon>
+                            <ManageAccountsIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={"会員情報編集"} />
+                    </ListItemButton>
+                </ListItem>
                 <ListItem disablePadding>
                     <ListItemButton
                         onClick={() => {

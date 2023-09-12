@@ -5,6 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MyPageMenu from "./MyPageMenu";
 import { Box, Button, Link } from "@mui/material";
+import Logo from "@/../../public/tree_logo.png";
 
 export default function MenuAppBar(props) {
     const { loginAndRegister, auth } = props;
@@ -19,7 +20,8 @@ export default function MenuAppBar(props) {
         <AppBar position="sticky" color="inherit" sx={{ mb: 3 }}>
             <Toolbar>
                 <Link href="/" ml={3}>
-                    <img src="tree_logo.png" height="50px" />
+                    {/* <img src="tree_logo.png" height="50px" /> */}
+                    <img src={Logo} height="50px"/>
                 </Link>
                 <Box sx={{ flexGrow: 1 }} />
                 {auth.user ? (
