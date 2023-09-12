@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import VerticalAlignTopIcon from '@mui/icons-material/VerticalAlignTop';
-import { grey } from '@mui/material/colors'
+import { grey } from '@mui/material/colors';
+
+//tailwind css
+import '../../css/Tailwind.css';
 
 const ScrollToTop = () => {
     const [display, setDisplay] = useState(false);
