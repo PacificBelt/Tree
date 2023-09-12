@@ -48,7 +48,7 @@ class PaymentController extends Controller
         ]);
 
         //詳細画面に遷移変更
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::PROJECT);
     }
 
 }
