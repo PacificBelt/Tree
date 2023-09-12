@@ -30,7 +30,7 @@ export default function Cards(props) {
                         <Card>
                             <CardActionArea
                                 sx={{ height: "500px", width: "100%", pb: 2 }}
-                                href={route("project.show", { id: item.id })}
+                                href={route("project.show", { id: item.id - 1})}
                                 disableRipple
                             >
                                 <CardContent
