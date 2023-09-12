@@ -69,7 +69,7 @@ export default function Projects(props) {
                     <Button
                         type="submit"
                         variant="contained"
-                        color="success"
+                        color="secondary"
                         disabled={processing}
                         onClick={(e) => {
                             console.log("keyword", data);

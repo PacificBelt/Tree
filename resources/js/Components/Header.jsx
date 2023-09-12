@@ -1,7 +1,6 @@
 import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MyPageMenu from "./MyPageMenu";
@@ -18,16 +17,13 @@ export default function MenuAppBar(props) {
     };
 
     return (
-        <AppBar position="sticky" sx={{ mb: 3 }}>
+        <AppBar position="sticky" color="inherit" sx={{ mb: 3 }}>
             <Toolbar>
                 <Link href="/" ml={3}>
                     {/* <img src="tree_logo.png" height="50px" /> */}
                     <img src={Logo} height="50px"/>
                 </Link>
                 <Box sx={{ flexGrow: 1 }} />
-                <Button color="inherit" sx={{ mx: 1 }} href="/project/create">
-                    プロジェクト作成
-                </Button>
                 {auth.user ? (
                     <div>
                         <IconButton
@@ -36,7 +32,7 @@ export default function MenuAppBar(props) {
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
                             onClick={toggleDrawer}
-                            color="inherit"
+                            color="primary"
                         >
                             <AccountCircle />
                         </IconButton>
@@ -49,14 +45,18 @@ export default function MenuAppBar(props) {
                     loginAndRegister && (
                         <Box sx={{ display: "flex" }}>
                             <Button
-                                color="inherit"
+                                color="primary"
+                                // variant="contained"
+                                size="small"
                                 sx={{ mx: 1 }}
                                 href={route("login")}
                             >
                                 ログイン
                             </Button>
                             <Button
-                                color="inherit"
+                                color="primary"
+                                // variant="contained"
+                                size="small"
                                 sx={{ mx: 1 }}
                                 href={route("register")}
                             >
@@ -65,6 +65,9 @@ export default function MenuAppBar(props) {
                         </Box>
                     )
                 )}
+                <Button color="secondary" variant="contained" size="small" sx={{ mx: 1 }} href="/project/create">
+                    プロジェクト作成
+                </Button>
             </Toolbar>
         </AppBar>
     );
