@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Box, Button, Paper, Select, TextField, Typography, MenuItem, FormControl } from "@mui/material";
+import { Box, Button, Paper, Select, TextField, Typography, MenuItem, FormControl, InputAdornment } from "@mui/material";
 import { styled } from "@mui/material/styles"
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
@@ -93,6 +93,13 @@ const StandUpProject = () => {
                         onChange={(e) => setData('min_amount', e.target.value)}     
                         required
                         sx={{ mt: 1 }}
+                        InputProps={{
+                            endAdornment:(
+                                <InputAdornment position="end">
+                                    円
+                                </InputAdornment>
+                            )
+                        }}
                     />
                 </Box>
                 <Box mt={4}>
@@ -104,6 +111,13 @@ const StandUpProject = () => {
                         onChange={(e) => setData('goal_amount', e.target.value)}     
                         required
                         sx={{ mt: 1 }}
+                        InputProps={{
+                            endAdornment:(
+                                <InputAdornment position="end">
+                                    円
+                                </InputAdornment>
+                            )
+                        }}
                     />
                 </Box>
                 <Box mt={4}>
