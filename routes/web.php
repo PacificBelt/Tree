@@ -24,9 +24,11 @@ Route::post('/project/search', [SearchController::class, 'index'])->name('projec
 Route::group(
     ['middleware' => 'auth'],
     function () {
-        Route::resource('project', ProjectController::class);
+        Route::resource('project', ProjectController::class); //いろいろなルーティングが含まれるので超超超注意！！
 
-        Route::get('/project/show/{id}', [ProjectController::class, 'show'])->name('project.show');
+        Route::get('/mypage/created', [SearchController::class, 'created'])->name('project.created');
+        Route::get('/mypage/donated', [SearchController::class, 'donated'])->name('project.donated');
+
         Route::get('/dashboard', [ProjectController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
         Route::middleware('auth')->group(function () {
