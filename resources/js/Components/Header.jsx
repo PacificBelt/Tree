@@ -8,9 +8,8 @@ import MyPageMenu from "./MyPageMenu";
 import { Box, Button } from "@mui/material";
 
 export default function MenuAppBar(props) {
-    const { loginAndRegister } = props;
+    const { loginAndRegister, auth } = props;
 
-    const [auth, setAuth] = useState(true); // TODO:ログイン状態に応じて変える
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
     const toggleDrawer = () => {
@@ -23,7 +22,7 @@ export default function MenuAppBar(props) {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Tree
                 </Typography>
-                {auth ? (
+                {auth.user ? (
                     <div>
                         <IconButton
                             size="large"
