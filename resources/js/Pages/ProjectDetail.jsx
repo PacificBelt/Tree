@@ -18,10 +18,17 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import LinearProgress from "@mui/material/LinearProgress";
 import { useEffect } from "react";
 
+import Header from "@/Components/Header";
+import Footer from "@/Components/Footer";
+import { useForm, usePage } from '@inertiajs/react';
+
 export default function ProjectDetail(props) {
+    const auth = usePage().props.auth;
     const { project } = props;
     console.log(project);
     return (
+      <>
+      <Header auth={auth}/>
         <Paper
             sx={{
                 p: 4,
@@ -122,16 +129,10 @@ export default function ProjectDetail(props) {
 
                             </Typography>
                         </Box>
-                    </Card>
-                    <Box align="center" mt={3}>
-                        {(props.auth.user.name == props.project.userName) ?
-                            <Button variant="contained" size="large" href={route("project.edit", { id: (props.project.id)})} > プロジェクトを編集する</Button>
-                            :
-                            <Button variant="contained" size="large" href={route("payment", { id: (props.project.id )})} > このプロジェクトを支援する</Button>
-                        }
-                    </Box>
-                </Grid>
-            </Grid >
-        </Paper >
+                    </Grid>
+                </Grid >
+            </Paper >
+            <Footer />
+        </>
     );
 }
