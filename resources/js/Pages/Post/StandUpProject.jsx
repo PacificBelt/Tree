@@ -124,6 +124,7 @@ const StandUpProject = () => {
                     <Typography mb={1}>募集終了日</Typography>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker 
+                        disablePast
                         value={data.deadline}
                         onChange={(selectedDate) => setData('deadline', selectedDate)}  
                         />
