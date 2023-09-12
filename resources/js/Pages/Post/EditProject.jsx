@@ -1,4 +1,5 @@
 import React from "react";
+import dayjs from "dayjs";
 import { Box, Button, Paper, Select, TextField, Typography, MenuItem, FormControl, InputLabel, InputAdornment } from "@mui/material";
 import { styled } from "@mui/material/styles"
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -15,8 +16,10 @@ const EditProject = (props) => {
 
     const {data, setData, post, processing} = useForm({
         title: project.title || '', 
+        goal_amount: project.goal_amount || '', 
         min_amount: project.min_amount || '', 
         description: project.description || '',
+        deadline: project.deadline || '',
     });
 
     const submit = (e) => {
@@ -81,10 +84,9 @@ const EditProject = (props) => {
                     <TextField
                         disabled
                         label="変更不可"
-                        variant="filled"
+                        value={data.goal_amount}
                         sx={{ mt: 1 }}
                         InputProps={{
-                            readOnly: true,
                             endAdornment:(
                                 <InputAdornment position="end">
                                     円
@@ -114,6 +116,7 @@ const EditProject = (props) => {
                     <LocalizationProvider required dateAdapter={AdapterDayjs}>
                         <DatePicker
                             disabled
+                            value={dayjs(data.deadline)}
                             label="変更不可"
                         />
                     </LocalizationProvider>
