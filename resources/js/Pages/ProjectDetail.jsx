@@ -126,9 +126,9 @@ export default function ProjectDetail(props) {
                     </Card>
                     <Box align="center" mt={3}>
                         {(props.auth.user.name == props.project.userName) ?
-                            <Button variant="contained" size="large" href={route("project.show", { id: (props.project.id -1)})} > プロジェクトを編集する</Button>
+                            <Button variant="contained" size="large" href={route("project.edit", { id: (props.project.id)})} > プロジェクトを編集する</Button>
                             :
-                            <Button variant="contained" size="large" href={route("project.show", { id: (props.project.id -1)})} > このプロジェクトを支援する</Button>
+                            <Button variant="contained" size="large" href={route("payment", { id: (props.project.id -1)})} > このプロジェクトを支援する</Button>
                         }
                     </Box>
                 </Grid>
