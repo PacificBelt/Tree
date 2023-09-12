@@ -33,9 +33,17 @@ class ProjectController extends Controller
         $userName = User::getNames($userIds);
         //projectsにcurrentAmountとnumDonationsとuserNameを追加する(project_idをキーとした連想配列)
         foreach ($projects as $key => $value) {
-            $projects[$key]['currentAmount'] = $currentAmount[$value->id];
-            $projects[$key]['numDonations'] = $numDonations[$value->id];
             $projects[$key]['userName'] = $userName[$value->user_id];
+
+            // プロジェクトが 支払いデータを持っているかチェック
+            if ($value->payments) {
+                $projects[$key]['currentAmount'] = $currentAmount[$value->id];
+                $projects[$key]['numDonations'] = $numDonations[$value->id];
+            }
+            else{
+                $projects[$key]['currentAmount'] = 0;
+                $projects[$key]['numDonations'] = 0;
+            }
         }
 
         //ddd($projects);
