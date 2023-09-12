@@ -10,10 +10,10 @@ export default function Projects(props) {
         title: project.title,
         content:
             project.description.replace(/\n/g, "<br />").slice(0, 100) + "...",
-        createdBy: project.userName, // ここは後で置き換え
-        currentAmount: project.currentAmount, // ここは後で現在の金額に置き換え
+        createdBy: project.userName,
+        currentAmount: project.currentAmount,
         goalAmount: project.goal_amount,
-        numDonations: project.numDonations, // ここは後で実際の寄付数に置き換え
+        numDonations: project.numDonations,
         id: project.id,
     }));
 

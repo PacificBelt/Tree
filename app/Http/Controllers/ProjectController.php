@@ -35,12 +35,11 @@ class ProjectController extends Controller
         foreach ($projects as $key => $value) {
             $projects[$key]['userName'] = $userName[$value->user_id];
 
-            // プロジェクトが 支払いデータを持っているかチェック
-            if ($value->payments) {
+            // プロジェクトが 支払いデータを持っていなければ0を返す
+            if (isset($currentAmount[$value->id])) {
                 $projects[$key]['currentAmount'] = $currentAmount[$value->id];
                 $projects[$key]['numDonations'] = $numDonations[$value->id];
-            }
-            else{
+            } else {
                 $projects[$key]['currentAmount'] = 0;
                 $projects[$key]['numDonations'] = 0;
             }
@@ -68,16 +67,16 @@ class ProjectController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
-    {   
+    {
         //プロジェクトのバリデーション
         //現在は画像以外必須項目
         $request->validate([
             'title' => 'required|string|max:255',
-            'min_amount' => 'required|integer|min:0',//正の整数
+            'min_amount' => 'required|integer|min:0', //正の整数
             'goal_amount' => 'required|integer|min:0',
-            'deadline' => 'required|date|after:today',//今日以降の日付
+            'deadline' => 'required|date|after:today', //今日以降の日付
             'description' => 'required|string|max:500',
-            'header' => 'nullable|image'//写真
+            'header' => 'nullable|image' //写真
         ]);
 
 
@@ -117,6 +116,15 @@ class ProjectController extends Controller
             $projects[$key]['numDonations'] = $numDonations[$value->id];
             $projects[$key]['userName'] = $userName[$value->user_id];
         }
+        //プロジェクトが 支払いデータを持っていなければ0を返す
+        if (isset($currentAmount[$id])) {
+            $project['currentAmount'] = $currentAmount[$id];
+            $project['numDonations'] = $numDonations[$id];
+        } else {
+            $project['currentAmount'] = 0;
+            $project['numDonations'] = 0;
+        }
+
         $project = $projects[$id];
         return Inertia::render('ProjectDetail', ['project' => $project]);
     }
