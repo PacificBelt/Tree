@@ -51,6 +51,14 @@ export default function MyPageMenu(props) {
             <Divider />
             <List>
                 <ListItem disablePadding>
+                    <ListItemButton href="profile">
+                        <ListItemIcon>
+                            <ManageAccountsIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={"会員情報編集"} />
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
                     <ListItemButton
                         onClick={() => {
                             Inertia.post(route("logout"));
