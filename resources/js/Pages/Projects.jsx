@@ -5,9 +5,10 @@ import Header from "@/Components/Header";
 import { Box, Button, Link, Paper, TextField, Typography } from "@mui/material";
 import { useForm } from "@inertiajs/react";
 import { useState } from "react";
+import ScrollToTop from "@/Components/ScrollToTop";
 
 export default function Projects(props) {
-    const { projects } = props;
+    const { projects, auth } = props;
 
     const items = projects.map((project) => ({
         title: project.title,
@@ -33,7 +34,7 @@ export default function Projects(props) {
 
     return (
         <>
-            <Header />
+            <Header loginAndRegister auth={auth} />
             <form onSubmit={submit}>
                 <TextField
                     label="検索"
@@ -59,6 +60,7 @@ export default function Projects(props) {
             </form>
             <Cards items={items} />
             <Footer />
+            <ScrollToTop />
         </>
     );
 }

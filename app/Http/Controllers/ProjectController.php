@@ -54,7 +54,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //project/createというフロントの画面に遷移
+        //プロジェクトの作成画面に遷移
         return Inertia::render('Post/StandUpProject');
     }
 
@@ -112,21 +112,19 @@ class ProjectController extends Controller
         $userName = User::getNames($userIds);
         //projectsにcurrentAmountとnumDonationsとuserNameを追加する(project_idをキーとした連想配列)
         foreach ($projects as $key => $value) {
-            $projects[$key]['currentAmount'] = $currentAmount[$value->id];
-            $projects[$key]['numDonations'] = $numDonations[$value->id];
-            $projects[$key]['userName'] = $userName[$value->user_id];
+            // プロジェクトが 支払いデータを持っていなければ0を返す
+            if (isset($currentAmount[$value->id])) {
+                $projects[$key]['currentAmount'] = $currentAmount[$value->id];
+                $projects[$key]['numDonations'] = $numDonations[$value->id];
+                $projects[$key]['userName'] = $userName[$value->user_id];
+            } else {
+                $projects[$key]['currentAmount'] = 0;
+                $projects[$key]['numDonations'] = 0;
+                $projects[$key]['userName'] = 0;
+            }
         }
-        //プロジェクトが 支払いデータを持っていなければ0を返す
-        if (isset($currentAmount[$id])) {
-            $project['currentAmount'] = $currentAmount[$id];
-            $project['numDonations'] = $numDonations[$id];
-        } else {
-            $project['currentAmount'] = 0;
-            $project['numDonations'] = 0;
-        }
-
-        $project = $projects[$id];
-        return Inertia::render('ProjectDetail', ['project' => $project]);
+        
+        return Inertia::render('ProjectDetail', ['project' => $projects[$id]]);
     }
 
     /**
@@ -134,7 +132,9 @@ class ProjectController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $project = projects::find($id);
+         //プロジェクトの編集画面に遷移
+         return Inertia::render('Post/EditProject', ['project' => $project]);
     }
 
     /**
@@ -142,7 +142,36 @@ class ProjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //プロジェクトのバリデーション
+        //現在は画像以外必須項目
+        $request->validate([
+            'title' => 'string|max:255',
+            'min_amount' => 'integer|min:0',//正の整数
+            'description' => 'string|max:500',
+            'header' => 'nullable|image'//写真
+        ]);
+
+        $project = projects::find($id);
+       
+        if ($request->title !== null) {
+            $project->title = $request->title;
+        }
+
+        if ($request->min_mount !== null) {
+            $project->min_mount = $request->min_mount;
+        }
+
+        if($request->description != null){
+            $project->description = $request->description;
+        }
+
+        if ($request->header !== null) {
+            $project->header = $request->header;
+        }
+
+        $project->save();
+
+        return redirect(RouteServiceProvider::HOME);
     }
 
     /**

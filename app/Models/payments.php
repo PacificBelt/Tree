@@ -32,4 +32,7 @@ class payments extends Model
         }
         return [$currentAmount, $numDonations];
     }
+
+    protected $fillable = ['user_id', 'project_id', 'amount'];
+
 }
