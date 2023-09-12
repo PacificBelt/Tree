@@ -20,4 +20,9 @@ class projects extends Model
 
     protected $fillable = ['title', 'min_amount', 'goal_amount', 'deadline', 'description', 'header', 'user_id'];
 
+    public static function getAllOrderByUpdated_at()
+    {
+        return self::orderBy('updated_at', 'desc')->get();
+    }
+
 }

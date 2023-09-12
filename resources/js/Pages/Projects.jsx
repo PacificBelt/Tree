@@ -6,7 +6,6 @@ import Header from "@/Components/Header";
 export default function Projects(props) {
     const { projects } = props;
 
-    console.log(projects); 
     const items = projects.map((project) => ({
         title: project.title,
         content:

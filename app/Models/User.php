@@ -22,6 +22,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(Payment::class);
     }
+    //idの配列を渡すと、そのidのaccount_nameの配列を返す
+    public static function getNames(array $ids)
+    {
+        $users = self::whereIn('id', $ids)->get();
+        $names = [];
+        foreach ($users as $key => $value) {
+            $names[$value->id] = $value->account_name;
+        }
+        return $names;
+    }
 
     /**
      * The attributes that are mass assignable.

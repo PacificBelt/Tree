@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Box, Button, Paper, Select, TextField, Typography, MenuItem, FormControl } from "@mui/material";
 import { styled } from "@mui/material/styles"
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -35,6 +36,11 @@ const StandUpProject = () => {
                 m: "30px auto",
             }}
         >
+            <Box mt={2}>
+                <Button>
+                    戻る
+                </Button>
+            </Box>
             <Typography variant={"h5"}>クラウドファンディングを開始する</Typography>
             <form onSubmit={submit}>
                 <Box mt={2}>
