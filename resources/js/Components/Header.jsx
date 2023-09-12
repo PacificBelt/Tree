@@ -17,7 +17,7 @@ export default function MenuAppBar(props) {
     };
 
     return (
-        <AppBar position="sticky" sx={{ mb: 2 }}>
+        <AppBar position="sticky" sx={{ mb: 3 }}>
             <Toolbar>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Tree
