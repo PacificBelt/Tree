@@ -16,7 +16,7 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             colors:{
-                pink: "#ffc0cb"
+                darkgreen: "#2e4500"
             }
         },
     },

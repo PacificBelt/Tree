@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { BiChevronUp } from "react-icons/bi";
+import VerticalAlignTopIcon from '@mui/icons-material/VerticalAlignTop';
+import { grey } from '@mui/material/colors'
 
 const ScrollToTop = () => {
     const [display, setDisplay] = useState(false);
@@ -11,9 +12,9 @@ const ScrollToTop = () => {
     return (
         <>
             {display && (
-                <div className="fixed right-[5%] bottom-40 w-8 h-8 bg-pink flex items-center justify-center rounded-full">
+                <div className="fixed right-[5%] bottom-40 w-8 h-8 bg-darkgreen flex items-center justify-center rounded-full">
                     <a href="#home">
-                        <BiChevronUp className="text-3xl text-white" />
+                        <VerticalAlignTopIcon sx={{ color:grey[50] }} />
                     </a>
                 </div>
             )}
