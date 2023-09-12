@@ -13,6 +13,7 @@ import SellIcon from "@mui/icons-material/Sell";
 import PersonIcon from "@mui/icons-material/Person";
 import GroupsIcon from "@mui/icons-material/Groups";
 import AlarmIcon from "@mui/icons-material/Alarm";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 import LinearProgress from "@mui/material/LinearProgress";
 import { useEffect } from "react";
@@ -23,7 +24,6 @@ export default function ProjectDetail(props) {
         const { item } = props.project;
         console.log(props.project);
     }, []);
-
     return (
         <Paper
             sx={{
@@ -33,7 +33,9 @@ export default function ProjectDetail(props) {
                 background: "#e8f5e9",
             }}
         >
-            <Typography variant={"h3"} align="center" mb={5}></Typography>
+            <Typography variant={"h3"} align="center" mb={5}>
+                {props.project.title}
+            </Typography>
             <Box align="center" m={2}>
                 <Chip
                     icon={<PersonIcon fontSize="small" />}
@@ -74,16 +76,9 @@ export default function ProjectDetail(props) {
                             <Typography variant={"h3"}>
                                 {props.project.currentAmount.toLocaleString()}円
                             </Typography>
-                            <linearGradient
-                                id="linearColors"
-                                gradientTransform="rotate(90)"
-                            >
-                                <stop offset={0} stopColor="#0080FE" />
-                                <stop offset={1} stopColor="#00DDDD" />
-                            </linearGradient>
                             <LinearProgress
                                 variant="determinate"
-                                value={60}
+                                value={props.project.currentAmount / props.project.goal_amount}
                                 sx={{
                                     height: "10px",
                                     borderRadius: "5px",
@@ -91,7 +86,7 @@ export default function ProjectDetail(props) {
                                 }}
                             />
                             <Typography variant="subtitle1">
-                                達成率 60%
+                                達成率 {(props.project.currentAmount / props.project.goal_amount).toLocaleString()}%
                             </Typography>
                             <Typography variant="subtitle1">
                                 目標金額{" "}
@@ -100,7 +95,7 @@ export default function ProjectDetail(props) {
                         </Box>
                         <Box m={3}>
                             <Stack direction="row">
-                                <GroupsIcon
+                                <FavoriteIcon
                                     fontSize="medium"
                                     sx={{ margin: "5px" }}
                                 />
@@ -116,10 +111,16 @@ export default function ProjectDetail(props) {
                                     fontSize="medium"
                                     sx={{ margin: "5px" }}
                                 />
-                                <Typography variant="h6">締め切り</Typography>
+                                <Typography variant="h6">締め切りまで</Typography>
                             </Stack>
                             <Typography variant={"h4"}>
-                                {props.project.deadline}
+                                あと{" "}
+                                {parseInt((new Date(props.project.deadline) - new Date()) / 1000 / 60 / 60 / 24)}
+                                {" "}日
+                            </Typography>
+                            <Typography variant={"h5"} mt={1}>
+                                締め切り{" "}
+                                {new Date(props.project.deadline).toLocaleDateString('jp-jp', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}
                             </Typography>
                         </Box>
                     </Card>
