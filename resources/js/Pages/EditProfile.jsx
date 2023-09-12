@@ -9,8 +9,8 @@ import UpdatePasswordForm from './Profile/Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Profile/Partials/UpdateProfileInformationForm';
 
 export default function EditProfile(mustVerifyEmail, status) {
-    // TODO: ログインしていないと見られないようにする
-    const user = usePage().props.auth.user;
+    const auth = usePage().props.auth;
+    const user = auth.user;
 
     const { data, setData, patch, processing, errors, reset } = useForm({
         url: user.url || "",
@@ -26,7 +26,7 @@ export default function EditProfile(mustVerifyEmail, status) {
 
     return (
         <>
-            <Header />
+            <Header auth={auth}/>
             <Paper
                 sx={{
                     p: 4,
@@ -40,7 +40,6 @@ export default function EditProfile(mustVerifyEmail, status) {
                     status={status}
                 />
 
-                {/* TODO:パスワード確認と違うときエラーが発生する */}
                 <UpdatePasswordForm/>
 
                 <form onSubmit={submit}>
