@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,6 +31,8 @@ Route::get('/', function () {
     ]);
 });
 
+Route::post('/project/search', [SearchController::class, 'index'])->name('project.search');
+
 Route::get('/project/show/{id}', [ProjectController::class, 'show'])->name('project.show');
 Route::get('/dashboard', [ProjectController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -40,16 +44,19 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/project', function () {
-    return Inertia::render('Projects');
-})->middleware(['auth', 'verified'])->name('projects');
+    return Inertia::render('ProjectDetail');
+})->middleware(['auth', 'verified'])->name('project');
 
 Route::get('/project/create', [ProjectController::class, 'create'])
-->middleware(['auth', 'verified'])->name('project.create');
+    ->middleware(['auth', 'verified'])->name('project.create');
 Route::post('/project/create', [ProjectController::class, 'store']);
 
 Route::get('/project/edit/{id}', [ProjectController::class, 'edit'])->name('project.edit');
 Route::post('/project/edit/{id}', [ProjectController::class, 'update']);
 
+Route::get('/payment/{id}', [PaymentController::class, 'create'])
+    ->middleware(['auth', 'verified'])->name('payment');
+Route::post('/payment/{id}', [PaymentController::class, 'store']);
 
-require __DIR__.'/auth.php';
 
+require __DIR__ . '/auth.php';
