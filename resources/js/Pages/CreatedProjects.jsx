@@ -2,10 +2,18 @@ import React from "react";
 import Cards from "@/Components/Cards";
 import Footer from "@/Components/Footer";
 import Header from "@/Components/Header";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import {
+    Box,
+    Button,
+    InputAdornment,
+    TextField,
+    Typography,
+} from "@mui/material";
 import { useForm } from "@inertiajs/react";
 import { useState } from "react";
 import ScrollToTop from "@/Components/ScrollToTop";
+import SearchIcon from "@mui/icons-material/Search";
+import EditNoteIcon from "@mui/icons-material/EditNote";
 
 export default function CreatedProjects(props) {
     const { projects, auth } = props;
@@ -42,29 +50,56 @@ export default function CreatedProjects(props) {
             }}
         >
             <Header loginAndRegister auth={auth} />
-            <Typography variant="h4" component="h1" align="center">
-                作成したプロジェクト一覧
-            </Typography>
+            <Box
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    px: 4,
+                    pb: 3,
+                    gap: 0.5,
+                }}
+            >
+                <EditNoteIcon fontSize="large" color="primary" />
+                <Typography variant="h5">作成したプロジェクト一覧</Typography>
+            </Box>
             <form onSubmit={submit}>
-                <TextField
-                    label="検索"
-                    variant="outlined"
-                    value={search}
-                    required
-                    onChange={(e) => setSearch(e.target.value)}
-                />
-                <Button
-                    type="submit"
-                    variant="contained"
-                    color="success"
-                    disabled={processing}
-                    onClick={(e) => {
-                        console.log("keyword", data);
-                        setData("keyword", search);
+                <Box
+                    sx={{
+                        px: 4,
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 2,
                     }}
                 >
-                    検索する
-                </Button>
+                    <TextField
+                        label="検索"
+                        variant="outlined"
+                        value={search}
+                        required
+                        onChange={(e) => setSearch(e.target.value)}
+                        size="small"
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <SearchIcon />
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="secondary"
+                        disabled={processing}
+                        onClick={(e) => {
+                            console.log("keyword", data);
+                            setData("keyword", search);
+                        }}
+                        sx={{ height: "100%" }}
+                    >
+                        検索する
+                    </Button>
+                </Box>
             </form>
             <Cards items={items} />
             <Footer />
