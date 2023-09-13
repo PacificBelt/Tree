@@ -49,7 +49,7 @@ const StandUpProject = () => {
                     戻る
                 </Button>
             </Box>
-            <Typography variant={"h5"}>クラウドファンディングを開始する</Typography>
+            <Typography variant="h4" component="h1" align="center">クラウドファンディングを開始する</Typography>
             <form onSubmit={submit}>
                 <Box mt={2}>
                     <Typography mb={1}>タイトル</Typography>
