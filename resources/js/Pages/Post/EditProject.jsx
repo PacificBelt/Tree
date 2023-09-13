@@ -76,7 +76,7 @@ const EditProject = (props) => {
                 <Box mt={4}>
                     <Typography mb={1}>タグ</Typography>
                     <FormControl sx={{minWidth: 120}}>
-                        <InputLabel>(試作です)
+                        <InputLabel>選択してください
                         </InputLabel>
                         <Select
                             label="tag">
@@ -145,6 +145,7 @@ const EditProject = (props) => {
                         color="success"
                         fullWidth
                         disabled={processing}
+                        href={route("project.show", { id: (props.project.id) })}
                     >
                         保存する
                     </Button>

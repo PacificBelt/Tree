@@ -12,7 +12,7 @@ import { ThemeProvider } from "@mui/material";
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 
 createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
+    title: (title) => `Tree`,
     resolve: (name) =>
         resolvePageComponent(
             `./Pages/${name}.jsx`,

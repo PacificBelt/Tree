@@ -53,7 +53,6 @@ class PaymentController extends Controller
         $project = projects::find($id);
 
         //詳細画面に遷移変更
-        //return redirect(RouteServiceProvider::PROJECT);
         return Redirect::route('show', ['id' => $id]);
     }
 

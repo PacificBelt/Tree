@@ -50,11 +50,11 @@ Route::group(
         Route::get('/project/edit/{id}', [ProjectController::class, 'edit'])->name('project.edit');
         Route::post('/project/edit/{id}', [ProjectController::class, 'update']);
 
+
         Route::get('/payment/{id}', [PaymentController::class, 'create'])
             ->middleware(['auth', 'verified'])->name('payment');
         Route::post('/payment/{id}', [PaymentController::class, 'store']);
     }
 );
-
 
 require __DIR__ . '/auth.php';
