@@ -87,9 +87,9 @@ export default function Cards(props) {
                                                 color="secondary"
                                                 variant="determinate"
                                                 value={
-                                                    (item.currentAmount /
-                                                        item.goalAmount) *
-                                                    100
+                                                    (item.currentAmount / item.goalAmount) * 100 > 100 ?
+                                                        100 :
+                                                        (item.currentAmount / item.goalAmount) * 100
                                                 }
                                                 sx={{
                                                     height: "10px",
@@ -102,7 +102,7 @@ export default function Cards(props) {
                                                 {Math.round(
                                                     (item.currentAmount /
                                                         item.goalAmount) *
-                                                        100
+                                                    100
                                                 )}
                                                 %
                                             </Typography>
@@ -177,10 +177,10 @@ export default function Cards(props) {
                                                             item.deadline
                                                         ) -
                                                             new Date()) /
-                                                            1000 /
-                                                            60 /
-                                                            60 /
-                                                            24
+                                                        1000 /
+                                                        60 /
+                                                        60 /
+                                                        24
                                                     )}{" "}
                                                     日
                                                 </Typography>

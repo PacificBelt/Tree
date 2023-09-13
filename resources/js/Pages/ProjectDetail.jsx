@@ -88,7 +88,11 @@ export default function ProjectDetail(props) {
                                 </Typography>
                                 <LinearProgress
                                     variant="determinate"
-                                    value={project.currentAmount / props.project.goal_amount}
+                                    value={
+                                        project.currentAmount / props.project.goal_amount * 100 > 100 ?
+                                            100 :
+                                            project.currentAmount / props.project.goal_amount * 100
+                                    }
                                     sx={{
                                         height: "10px",
                                         borderRadius: "5px",
@@ -96,7 +100,7 @@ export default function ProjectDetail(props) {
                                     }}
                                 />
                                 <Typography variant="subtitle1">
-                                    達成率 {(project.currentAmount / props.project.goal_amount).toLocaleString()}%
+                                    達成率 {(project.currentAmount / props.project.goal_amount * 100).toLocaleString()}%
                                 </Typography>
                                 <Typography variant="subtitle1">
                                     目標金額{" "}
