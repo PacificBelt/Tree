@@ -7,13 +7,15 @@ import {
     Button,
     InputAdornment,
     TextField,
+    Typography,
 } from "@mui/material";
 import { useForm } from "@inertiajs/react";
 import { useState } from "react";
 import ScrollToTop from "@/Components/ScrollToTop";
 import SearchIcon from "@mui/icons-material/Search";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
-export default function Projects(props) {
+export default function DonatedProjects(props) {
     const { projects, auth } = props;
 
     const items = projects.map((project) => ({
@@ -40,8 +42,26 @@ export default function Projects(props) {
     const [search, setSearch] = useState("");
 
     return (
-        <>
-            <Header loginAndRegister auth={auth} />
+        <Box
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                minHeight: "100vh",
+            }}
+        >
+            <Header auth={auth} />
+            <Box
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    px: 4,
+                    pb: 2,
+                    gap: 0.5,
+                }}
+            >
+                <FavoriteIcon fontSize="large" color="primary" />
+                <Typography variant="h5">支援したプロジェクト一覧</Typography>
+            </Box>
             <form onSubmit={submit}>
                 <Box
                     sx={{
@@ -84,6 +104,6 @@ export default function Projects(props) {
             <Cards items={items} />
             <Footer />
             <ScrollToTop />
-        </>
+        </Box>
     );
 }

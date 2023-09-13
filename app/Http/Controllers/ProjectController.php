@@ -100,33 +100,29 @@ class ProjectController extends Controller
      */
     public function show(string $id)
     {
-        //時間がないので一旦使い回しで行きます
-        //時間があれば一つだけ取り出すように変更します
-        $projects = projects::getAllOrderByUpdated_at();
-        [$currentAmount, $numDonations] = payments::getCurrentAmount();
-        //projectから,project_idをキーとしたuser_idの連想配列を作成する
-        $userIds = [];
-        foreach ($projects as $key => $value) {
-            $userIds[$value->id] = $value->user_id;
-        }
-        $userName = User::getNames($userIds);
-        //projectsにcurrentAmountとnumDonationsとuserNameを追加する(project_idをキーとした連想配列)
-        foreach ($projects as $key => $value) {
-            $projects[$key]['currentAmount'] = $currentAmount[$value->id];
-            $projects[$key]['numDonations'] = $numDonations[$value->id];
-            $projects[$key]['userName'] = $userName[$value->user_id];
-        }
-        //プロジェクトが 支払いデータを持っていなければ0を返す
-        if (isset($currentAmount[$id])) {
-            $project['currentAmount'] = $currentAmount[$id];
-            $project['numDonations'] = $numDonations[$id];
+        //詳細からもどってきた場合のとりあえずの対処
+        if ($id == "search"){
+            return redirect(RouteServiceProvider::HOME);
         } else {
-            $project['currentAmount'] = 0;
-            $project['numDonations'] = 0;
+            $project = projects::find($id);
+            [$currentAmount, $numDonations] = payments::getCurrentAmount();
+
+            //プロジェクトの作成者のアカウント名をいれる
+            $user = User::find($project->user_id);
+            $project->userName = $user->account_name;
+
+            //プロジェクトの支援状況
+            if(isset($currentAmount[$project->id])){
+                $project->currentAmount = $currentAmount[$project->id];
+                $project->numDonations = $numDonations[$project->id];
+            } else {
+                $project->currentAmount = 0;
+                $project->numDonations = 0;
+            }
+            
+            return Inertia::render('ProjectDetail', ['project' => $project]);
         }
 
-        $project = $projects[$id];
-        return Inertia::render('ProjectDetail', ['project' => $project]);
     }
 
     /**

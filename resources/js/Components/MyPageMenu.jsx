@@ -6,13 +6,14 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import EditNoteIcon from '@mui/icons-material/EditNote';
+import EditNoteIcon from "@mui/icons-material/EditNote";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import CloseIcon from "@mui/icons-material/Close";
 import styled from "@emotion/styled";
 import { IconButton, Typography } from "@mui/material";
+import { Inertia } from "@inertiajs/inertia";
 
 export default function MyPageMenu(props) {
     const { isOpen, toggleDrawer } = props;
@@ -30,7 +31,7 @@ export default function MyPageMenu(props) {
             <List>
                 <ListItem disablePadding>
                     {/* TODO: リンク先を設定する */}
-                    <ListItemButton href="">
+                    <ListItemButton href={route("project.created")}>
                         <ListItemIcon>
                             <EditNoteIcon />
                         </ListItemIcon>
@@ -39,7 +40,7 @@ export default function MyPageMenu(props) {
                 </ListItem>
                 <ListItem disablePadding>
                     {/* TODO: リンク先を設定する */}
-                    <ListItemButton href="">
+                    <ListItemButton href={route("project.donated")}>
                         <ListItemIcon>
                             <FavoriteIcon />
                         </ListItemIcon>
@@ -58,8 +59,12 @@ export default function MyPageMenu(props) {
                     </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
-                  {/* TODO: リンク先を設定する */}
-                    <ListItemButton>
+                    <ListItemButton
+                        onClick={() => {
+                            Inertia.post(route("logout"));
+                        }}
+                        href="/"
+                    >
                         <ListItemIcon>
                             <LogoutIcon />
                         </ListItemIcon>
