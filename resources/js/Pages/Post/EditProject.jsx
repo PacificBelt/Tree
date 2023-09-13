@@ -145,6 +145,7 @@ const EditProject = (props) => {
                         color="success"
                         fullWidth
                         disabled={processing}
+                        href={route("project.show", { id: (props.project.id) })}
                     >
                         保存する
                     </Button>
