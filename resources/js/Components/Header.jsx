@@ -4,7 +4,7 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MyPageMenu from "./MyPageMenu";
-import { Box, Button, Link } from "@mui/material";
+import { Box, Button, Link, Typography } from "@mui/material";
 import Logo from "@/../../public/tree_logo.png";
 
 export default function MenuAppBar(props) {
@@ -19,10 +19,13 @@ export default function MenuAppBar(props) {
     return (
         <AppBar position="sticky" color="inherit" sx={{ mb: 3 }}>
             <Toolbar>
-                <Link href="/" ml={3}>
+                <Link href="/" mx={3}>
                     {/* <img src="tree_logo.png" height="50px" /> */}
                     <img src={Logo} height="50px"/>
                 </Link>
+                <Typography variant="caption">
+                    「よみたい」と「かきたい」をつなげるクラウドファンディング
+                </Typography>
                 <Box sx={{ flexGrow: 1 }} />
                 {auth.user ? (
                     <div>
