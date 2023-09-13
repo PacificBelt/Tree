@@ -21,6 +21,7 @@ import { useEffect } from "react";
 import Header from "@/Components/Header";
 import Footer from "@/Components/Footer";
 import { useForm, usePage } from '@inertiajs/react';
+import ScrollToTop from "@/Components/ScrollToTop";
 
 export default function ProjectDetail(props) {
     const auth = usePage().props.auth;
@@ -147,6 +148,7 @@ export default function ProjectDetail(props) {
                 </Grid >
             </Paper >
             <Footer />
+            <ScrollToTop />
         </>
     );
 }
