@@ -126,7 +126,7 @@ class SearchController extends Controller
 
     public function donated()
     {
-        $user_id = Auth::user()->user_id;
+        $user_id = Auth::user()->id;
         $project_ids = payments::query()
             ->where('user_id', $user_id)
             ->pluck('project_id')
