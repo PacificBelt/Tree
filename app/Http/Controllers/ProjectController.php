@@ -101,7 +101,7 @@ class ProjectController extends Controller
     public function show(string $id)
     {
         //詳細からもどってきた場合のとりあえずの対処
-        if ($id == "search"){
+        if ($id == "search") {
             return redirect(RouteServiceProvider::HOME);
         } else {
             $project = projects::find($id);
@@ -112,17 +112,16 @@ class ProjectController extends Controller
             $project->userName = $user->account_name;
 
             //プロジェクトの支援状況
-            if(isset($currentAmount[$project->id])){
+            if (isset($currentAmount[$project->id])) {
                 $project->currentAmount = $currentAmount[$project->id];
                 $project->numDonations = $numDonations[$project->id];
             } else {
                 $project->currentAmount = 0;
                 $project->numDonations = 0;
             }
-            
+
             return Inertia::render('ProjectDetail', ['project' => $project]);
         }
-
     }
 
     /**
@@ -131,8 +130,8 @@ class ProjectController extends Controller
     public function edit(string $id)
     {
         $project = projects::find($id);
-         //プロジェクトの編集画面に遷移
-         return Inertia::render('Post/EditProject', ['project' => $project]);
+        //プロジェクトの編集画面に遷移
+        return Inertia::render('Post/EditProject', ['project' => $project]);
     }
 
     /**
@@ -144,13 +143,13 @@ class ProjectController extends Controller
         //現在は画像以外必須項目
         $request->validate([
             'title' => 'string|max:255',
-            'min_amount' => 'integer|min:0',//正の整数
+            'min_amount' => 'integer|min:0', //正の整数
             'description' => 'string|max:500',
-            'header' => 'nullable|image'//写真
+            'header' => 'nullable|image' //写真
         ]);
 
         $project = projects::find($id);
-       
+
         if ($request->title !== null) {
             $project->title = $request->title;
         }
@@ -159,14 +158,14 @@ class ProjectController extends Controller
             $project->min_mount = $request->min_mount;
         }
 
-        if($request->description != null){
+        if ($request->description != null) {
             $project->description = $request->description;
         }
 
         if ($request->header !== null) {
             $project->header = $request->header;
         }
-
+        //ddd($request);
         $project->save();
 
         return redirect(RouteServiceProvider::HOME);
