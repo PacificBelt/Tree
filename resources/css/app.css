@@ -4,8 +4,13 @@
 
 body {
     margin: 0;
+    height: "100%"
 }
 
 input:focus {
     box-shadow: none !important;
+}
+
+#app {
+    height: "100%"
 }

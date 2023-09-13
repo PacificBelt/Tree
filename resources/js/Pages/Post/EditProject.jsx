@@ -49,7 +49,7 @@ const EditProject = (props) => {
                     作成したプロジェクト一覧に戻る
                 </Button>
             </Box>
-            <Typography variant={"h5"}>プロジェクトを編集する</Typography>
+            <Typography variant="h4" component="h1" align="center">プロジェクトを編集する</Typography>
             <form onSubmit={submit}>
                 <Box mt={2}>
                     <Typography mb={1}>タイトル</Typography>

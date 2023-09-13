@@ -49,13 +49,12 @@ export default function Cards(props) {
                                             alignItems: "center",
                                         }}
                                     >
-                                        <CardMedia 
-                                        component="img"
-                                        height="120"
-                                        image="https://images.unsplash.com/photo-1551963831-b3b1ca40c98e">
-                                        </CardMedia>
+                                        <CardMedia
+                                            component="img"
+                                            height="120"
+                                            image="https://images.unsplash.com/photo-1551963831-b3b1ca40c98e"
+                                        ></CardMedia>
 
-                                        
                                         <Typography variant="h6" px={2} pt={1}>
                                             {item.title}
                                         </Typography>
@@ -67,7 +66,10 @@ export default function Cards(props) {
                                             }}
                                             gap={0.5}
                                         >
-                                            <PersonIcon fontSize="16px"/>
+                                            <PersonIcon
+                                                fontSize="16px"
+                                                color="primary"
+                                            />
                                             <Typography fontSize="16px">
                                                 {item.createdBy}
                                             </Typography>
@@ -82,11 +84,12 @@ export default function Cards(props) {
                                             }}
                                         >
                                             <LinearProgress
+                                                color="secondary"
                                                 variant="determinate"
                                                 value={
-                                                    (item.currentAmount /
-                                                        item.goalAmount) *
-                                                    100
+                                                    (item.currentAmount / item.goalAmount) * 100 > 100 ?
+                                                        100 :
+                                                        (item.currentAmount / item.goalAmount) * 100
                                                 }
                                                 sx={{
                                                     height: "10px",
@@ -99,7 +102,7 @@ export default function Cards(props) {
                                                 {Math.round(
                                                     (item.currentAmount /
                                                         item.goalAmount) *
-                                                        100
+                                                    100
                                                 )}
                                                 %
                                             </Typography>
@@ -120,7 +123,7 @@ export default function Cards(props) {
                                                 width: "100%",
                                                 // height: "50px",
                                                 px: 2,
-                                                py: 1
+                                                py: 1,
                                             }}
                                         >
                                             <Box
@@ -131,9 +134,11 @@ export default function Cards(props) {
                                                     width: "80px",
                                                 }}
                                             >
-                                                <CurrencyYenIcon />
-                                                <Typography variant="caption">現在</Typography>
-                                                <Typography>
+                                                <CurrencyYenIcon color="primary" />
+                                                <Typography variant="caption">
+                                                    現在金額
+                                                </Typography>
+                                                <Typography fontWeight="bold">
                                                     {item.currentAmount.toLocaleString()}{" "}
                                                     円
                                                 </Typography>
@@ -146,9 +151,11 @@ export default function Cards(props) {
                                                     width: "80px",
                                                 }}
                                             >
-                                                <FavoriteIcon />
-                                                <Typography variant="caption">支援者</Typography>
-                                                <Typography>
+                                                <FavoriteIcon color="primary" />
+                                                <Typography variant="caption">
+                                                    支援者
+                                                </Typography>
+                                                <Typography fontWeight="bold">
                                                     {item.numDonations} 人
                                                 </Typography>
                                             </Box>
@@ -160,18 +167,20 @@ export default function Cards(props) {
                                                     width: "80px",
                                                 }}
                                             >
-                                                <AlarmIcon />
-                                                <Typography variant="caption">残り</Typography>
-                                                <Typography>
+                                                <AlarmIcon color="primary" />
+                                                <Typography variant="caption">
+                                                    残り日数
+                                                </Typography>
+                                                <Typography fontWeight="bold">
                                                     {parseInt(
                                                         (new Date(
                                                             item.deadline
                                                         ) -
                                                             new Date()) /
-                                                            1000 /
-                                                            60 /
-                                                            60 /
-                                                            24
+                                                        1000 /
+                                                        60 /
+                                                        60 /
+                                                        24
                                                     )}{" "}
                                                     日
                                                 </Typography>

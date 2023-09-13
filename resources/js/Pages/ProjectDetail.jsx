@@ -21,6 +21,7 @@ import { useEffect } from "react";
 import Header from "@/Components/Header";
 import Footer from "@/Components/Footer";
 import { useForm, usePage } from '@inertiajs/react';
+import ScrollToTop from "@/Components/ScrollToTop";
 
 export default function ProjectDetail(props) {
     const auth = usePage().props.auth;
@@ -88,7 +89,11 @@ export default function ProjectDetail(props) {
                                 </Typography>
                                 <LinearProgress
                                     variant="determinate"
-                                    value={project.currentAmount / props.project.goal_amount}
+                                    value={
+                                        project.currentAmount / props.project.goal_amount * 100 > 100 ?
+                                            100 :
+                                            project.currentAmount / props.project.goal_amount * 100
+                                    }
                                     sx={{
                                         height: "10px",
                                         borderRadius: "5px",
@@ -96,7 +101,7 @@ export default function ProjectDetail(props) {
                                     }}
                                 />
                                 <Typography variant="subtitle1">
-                                    達成率 {(project.currentAmount / props.project.goal_amount).toLocaleString()}%
+                                    達成率 {(project.currentAmount / props.project.goal_amount * 100).toLocaleString()}%
                                 </Typography>
                                 <Typography variant="subtitle1">
                                     目標金額{" "}
@@ -137,7 +142,7 @@ export default function ProjectDetail(props) {
                             </Box>
                         </Card>
                         <Box align="center" mt={3}>
-                            {(props.auth.user.name != project.userName) ?
+                            {(props.auth.user.name == project.userName) ?
                                 <Button variant="contained" size="large" href={route("project.edit", { id: (project.id) })} > プロジェクトを編集する</Button>
                                 :
                                 <Button variant="contained" size="large" href={route("payment", { id: (project.id) })} > このプロジェクトを支援する</Button>
@@ -147,6 +152,7 @@ export default function ProjectDetail(props) {
                 </Grid >
             </Paper >
             <Footer />
+            <ScrollToTop />
         </>
     );
 }

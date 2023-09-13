@@ -9,15 +9,14 @@ export default function Footer() {
     <Box
       sx={{
         backgroundColor: (theme) =>
-          theme.palette.mode === "light"
-            ? theme.palette.grey[200]
-            : theme.palette.grey[800],
+          theme.palette.primary.main,
         p: 6,
+        mt: "auto"
       }}
       component="footer"
     >
       <Container maxWidth="sm">
-        <Typography variant="body2" color="text.secondary" align="center">
+        <Typography variant="body2" color="#FFFFFF" align="center">
           {"Copyright © "}
           <Link color="inherit" href="/">
             Tree
