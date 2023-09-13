@@ -63,6 +63,7 @@ export default function MyPageMenu(props) {
                         onClick={() => {
                             Inertia.post(route("logout"));
                         }}
+                        href="/"
                     >
                         <ListItemIcon>
                             <LogoutIcon />
