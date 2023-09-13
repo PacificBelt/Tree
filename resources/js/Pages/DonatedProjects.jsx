@@ -37,7 +37,7 @@ export default function DonatedProjects(props) {
         <>
             <Header auth={auth} />
             <Typography variant="h4" component="h1" align="center">
-                寄付したプロジェクト一覧
+                支援したプロジェクト一覧
             </Typography>
             <form onSubmit={submit}>
                 <TextField
