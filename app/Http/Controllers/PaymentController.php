@@ -12,6 +12,7 @@ use Inertia\Response;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class PaymentController extends Controller
 {
@@ -43,12 +44,17 @@ class PaymentController extends Controller
 
         payments::create([
             'user_id' => Auth::user()->id,
-            'product_id' => $id,
+            'project_id' => $id,
             'amount' => $request->amount,
         ]);
 
+        payments::getCurrentAmount();
+
+        $project = projects::find($id);
+
         //詳細画面に遷移変更
-        return redirect(RouteServiceProvider::PROJECT);
+        //return redirect(RouteServiceProvider::PROJECT);
+        return Redirect::route('show', ['id' => $id]);
     }
 
 }

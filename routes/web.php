@@ -45,6 +45,8 @@ Route::group(
             ->middleware(['auth', 'verified'])->name('project.create');
         Route::post('/project/create', [ProjectController::class, 'store']);
 
+        Route::get('/show/{id}', [ProjectController::class, 'show'])->name('show');
+
         Route::get('/project/edit/{id}', [ProjectController::class, 'edit'])->name('project.edit');
         Route::post('/project/edit/{id}', [ProjectController::class, 'update']);
 
