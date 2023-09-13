@@ -64,7 +64,7 @@ const EditProject = (props) => {
                     <Box mt={2}>
                         <Typography mb={1}>タイトル</Typography>
                         <TextField
-                            label="オリジナルタイトルを設定しましょう"
+                            placeholder="オリジナルタイトルを設定しましょう"
                             fullWidth
                             value={data.title}
                             onChange={(e) => setData("title", e.target.value)}
@@ -74,7 +74,8 @@ const EditProject = (props) => {
                     <Box mt={4}>
                         <Typography mb={1}>プロジェクト詳細</Typography>
                         <TextField
-                            label="〇字程度でまとめましょう"
+                            placeholder="1000字程度でまとめましょう"
+                            variant="outlined"
                             fullWidth
                             multiline
                             rows={10}
@@ -87,9 +88,12 @@ const EditProject = (props) => {
                     </Box>
                     <Box mt={4}>
                         <Typography mb={1}>タグ</Typography>
-                        <FormControl sx={{ minWidth: 120 }}>
-                            <InputLabel>選択してください</InputLabel>
-                            <Select label="tag">
+                        <FormControl sx={{ width: 231 }}>
+                            <InputLabel></InputLabel>
+                            <Select defaultValue={""} displayEmpty>
+                                <MenuItem disabled value="">
+                                    選択してください
+                                </MenuItem>
                                 <MenuItem value={0}>小説</MenuItem>
                                 <MenuItem value={1}>アニメ</MenuItem>
                                 <MenuItem value={2}>漫画</MenuItem>
@@ -101,9 +105,9 @@ const EditProject = (props) => {
                         <Typography mb={1}>目標金額</Typography>
                         <TextField
                             disabled
-                            label="変更不可"
+                            placeholder="変更不可"
                             value={data.goal_amount}
-                            sx={{ mt: 1 }}
+                            sx={{ mt: 1, width: 231}}
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position="end">
@@ -116,12 +120,12 @@ const EditProject = (props) => {
                     <Box mt={4}>
                         <Typography mb={1}>最低支援額</Typography>
                         <TextField
-                            label="(例)500"
+                            placeholder="(例) 1,000"
                             value={data.min_amount}
                             onChange={(e) =>
                                 setData("min_amount", e.target.value)
                             }
-                            sx={{ mt: 1 }}
+                            sx={{ mt: 1, width: 231}}
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position="end">
@@ -140,7 +144,7 @@ const EditProject = (props) => {
                             <DatePicker
                                 disabled
                                 value={dayjs(data.deadline)}
-                                label="変更不可"
+                                placeholder="変更不可"
                             />
                         </LocalizationProvider>
                     </Box>
@@ -154,7 +158,10 @@ const EditProject = (props) => {
                                 type="file"
                                 enctype="multipart/form-data"
                             />
-                            <Button variant="contained">
+                                                        <Button
+                                variant="outlined"
+                                sx={{ mt: 1, width: 231 }}
+                            >
                                 画像をアップロードする
                             </Button>
                         </label>
@@ -163,7 +170,7 @@ const EditProject = (props) => {
                         <Button
                             type="submit"
                             variant="contained"
-                            color="success"
+                            color="primary"
                             fullWidth
                             disabled={processing}
                         >

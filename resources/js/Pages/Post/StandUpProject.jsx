@@ -77,7 +77,7 @@ const StandUpProject = () => {
                     <Box mt={4}>
                         <Typography mb={1}>プロジェクト詳細</Typography>
                         <TextField
-                            placeholder="〇行程度でまとめましょう"
+                            placeholder="1000字程度でまとめましょう"
                             variant="outlined"
                             fullWidth
                             multiline
@@ -106,13 +106,13 @@ const StandUpProject = () => {
                         </FormControl>
                     </Box>
                     <Box mt={4}>
-                        <Typography mb={1}>最低支援額</Typography>
+                        <Typography mb={1}>目標金額</Typography>
                         <TextField
-                            placeholder="(例) 1,000"
+                            placeholder="(例) 100,000"
                             variant="outlined"
-                            value={data.min_amount}
+                            value={data.goal_amount}
                             onChange={(e) =>
-                                setData("min_amount", e.target.value)
+                                setData("goal_amount", e.target.value)
                             }
                             required
                             sx={{ mt: 1, width: 231 }}
@@ -126,13 +126,13 @@ const StandUpProject = () => {
                         />
                     </Box>
                     <Box mt={4}>
-                        <Typography mb={1}>目標金額</Typography>
+                        <Typography mb={1}>最低支援額</Typography>
                         <TextField
-                            placeholder="(例) 100,000"
+                            placeholder="(例) 1,000"
                             variant="outlined"
-                            value={data.goal_amount}
+                            value={data.min_amount}
                             onChange={(e) =>
-                                setData("goal_amount", e.target.value)
+                                setData("min_amount", e.target.value)
                             }
                             required
                             sx={{ mt: 1, width: 231 }}
