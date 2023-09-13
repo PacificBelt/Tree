@@ -2,7 +2,7 @@ import React from "react";
 import Cards from "@/Components/Cards";
 import Footer from "@/Components/Footer";
 import Header from "@/Components/Header";
-import { Button, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import { useForm } from "@inertiajs/react";
 import { useState } from "react";
 import ScrollToTop from "@/Components/ScrollToTop";
@@ -34,7 +34,13 @@ export default function DonatedProjects(props) {
     const [search, setSearch] = useState("");
 
     return (
-        <>
+        <Box
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                minHeight: "100vh",
+            }}
+        >
             <Header auth={auth} />
             <Typography variant="h4" component="h1" align="center">
                 寄付したプロジェクト一覧
@@ -63,6 +69,6 @@ export default function DonatedProjects(props) {
             <Cards items={items} />
             <Footer />
             <ScrollToTop />
-        </>
+        </Box>
     );
 }

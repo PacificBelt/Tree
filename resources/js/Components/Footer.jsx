@@ -11,6 +11,7 @@ export default function Footer() {
         backgroundColor: (theme) =>
           theme.palette.primary.main,
         p: 6,
+        mt: "auto"
       }}
       component="footer"
     >
