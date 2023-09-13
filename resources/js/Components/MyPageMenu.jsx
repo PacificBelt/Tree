@@ -51,7 +51,7 @@ export default function MyPageMenu(props) {
             <Divider />
             <List>
                 <ListItem disablePadding>
-                    <ListItemButton href="profile">
+                    <ListItemButton href={route("profile.edit")}>
                         <ListItemIcon>
                             <ManageAccountsIcon />
                         </ListItemIcon>
