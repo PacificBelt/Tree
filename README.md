@@ -30,7 +30,7 @@
 
 <h2>機能説明</h2>
 <h3>url</h3>
-http://57.180.59.148:8085/
+http://ec2-57-180-59-148.ap-northeast-1.compute.amazonaws.com:8085
 <h3>ホームページ</h3>
 <img src="public/images/demo_1.jpg">
 <h3>新規登録</h3>
