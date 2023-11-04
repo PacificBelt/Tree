@@ -29,7 +29,8 @@
 </ul>
 
 <h2>機能説明</h2>
-
+<h3>URL</h3>
+http://ec2-3-112-206-171.ap-northeast-1.compute.amazonaws.com:8085/
 <h3>ホームページ</h3>
 <img src="public/images/demo_1.jpg">
 <h3>新規登録</h3>
